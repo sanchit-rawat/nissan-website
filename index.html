@@ -3,158 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Draw The Perfect Circle</title>
+    <title>Draw The Perfect Circle 2.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0b0e14;
+            --bg: #05070a;
             --accent: #00f2ff;
             --text: #ffffff;
-            --panel: rgba(255, 255, 255, 0.05);
+            --danger: #ff4d4d;
         }
 
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            user-select: none;
-            -webkit-touch-callout: none;
+            margin: 0; padding: 0; box-sizing: border-box;
+            user-select: none; -webkit-touch-callout: none;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            height: 100vh; overflow: hidden;
+            display: flex; flex-direction: column; align-items: center;
         }
 
         canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            touch-action: none;
-            cursor: crosshair;
+            position: absolute; top: 0; left: 0;
+            touch-action: none; cursor: crosshair;
         }
 
-        .ui-layer {
-            position: relative;
-            z-index: 10;
-            pointer-events: none;
-            text-align: center;
-            width: 100%;
+        .ui {
+            position: relative; z-index: 10; pointer-events: none;
+            text-align: center; width: 100%;
         }
 
-        .header {
-            position: absolute;
-            top: 40px;
-            width: 100%;
+        /* Live Score Top Center */
+        .live-score-container {
+            margin-top: 40px;
+            transition: opacity 0.3s;
         }
 
-        h1 {
-            font-weight: 300;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-size: 1.2rem;
-            opacity: 0.6;
-        }
-
-        .score-container {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .percentage {
-            font-size: 6rem;
+        .live-score {
+            font-size: 4.5rem;
             font-weight: 700;
-            margin-bottom: 10px;
             color: var(--accent);
-            text-shadow: 0 0 30px rgba(0, 242, 255, 0.4);
+            text-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
+            font-variant-numeric: tabular-nums;
         }
 
-        .feedback {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin-bottom: 30px;
-            color: #888;
+        .final-panel {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; flex-direction: column; align-items: center;
+            animation: pop 0.4s cubic-bezier(0.17, 0.89, 0.32, 1.28);
         }
+
+        @keyframes pop {
+            from { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+            to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .feedback { font-size: 1.5rem; color: #888; margin-bottom: 20px; font-weight: 300; }
 
         .btn {
-            pointer-events: auto;
-            background: var(--text);
-            color: var(--bg);
-            border: none;
-            padding: 15px 40px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            pointer-events: auto; background: var(--text); color: var(--bg);
+            border: none; padding: 12px 35px; font-size: 0.9rem;
+            font-weight: 700; border-radius: 50px; cursor: pointer;
+            letter-spacing: 2px; text-transform: uppercase;
         }
 
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-        }
-
-        .hint {
-            position: absolute;
-            bottom: 40px;
-            width: 100%;
-            font-size: 0.9rem;
-            opacity: 0.4;
-            letter-spacing: 1px;
-        }
+        .status-msg { position: absolute; bottom: 40px; opacity: 0.3; letter-spacing: 2px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <canvas id="gameCanvas"></canvas>
+    <canvas id="canvas"></canvas>
 
-    <div class="ui-layer header" id="headerText">
-        <h1>Draw the perfect circle</h1>
+    <div class="ui live-score-container" id="liveScoreContainer" style="opacity: 0;">
+        <div class="live-score" id="liveValue">0.0%</div>
     </div>
 
-    <div class="ui-layer">
-        <div class="score-container" id="scoreContainer">
-            <div class="percentage" id="scoreValue">0.00%</div>
-            <div class="feedback" id="feedbackText">Are you a robot?</div>
-            <button class="btn" id="retryBtn">Try Again</button>
-        </div>
+    <div class="ui final-panel" id="finalPanel">
+        <div class="feedback" id="feedback">Not a circle.</div>
+        <button class="btn" onclick="resetGame()">Try Again</button>
     </div>
 
-    <div class="ui-layer hint" id="hintText">
-        CLICK AND DRAG TO DRAW
-    </div>
+    <div class="status-msg" id="status">DRAW A CIRCLE</div>
 
     <script>
-        const canvas = document.getElementById('gameCanvas');
+        const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
-        const scoreContainer = document.getElementById('scoreContainer');
-        const scoreValue = document.getElementById('scoreValue');
-        const feedbackText = document.getElementById('feedbackText');
-        const retryBtn = document.getElementById('retryBtn');
-        const headerText = document.getElementById('headerText');
-        const hintText = document.getElementById('hintText');
+        const liveScoreContainer = document.getElementById('liveScoreContainer');
+        const liveValue = document.getElementById('liveValue');
+        const finalPanel = document.getElementById('finalPanel');
+        const statusMsg = document.getElementById('status');
 
-        let isDrawing = false;
         let points = [];
+        let isDrawing = false;
         let canDraw = true;
 
-        // Resize canvas
         function resize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -162,126 +108,160 @@
         window.addEventListener('resize', resize);
         resize();
 
-        // Input Handlers
-        canvas.addEventListener('mousedown', startDrawing);
-        canvas.addEventListener('mousemove', draw);
-        window.addEventListener('mouseup', endDrawing);
+        canvas.addEventListener('mousedown', start);
+        window.addEventListener('mousemove', draw);
+        window.addEventListener('mouseup', end);
+        canvas.addEventListener('touchstart', (e) => start(e.touches[0]));
+        window.addEventListener('touchmove', (e) => draw(e.touches[0]));
+        window.addEventListener('touchend', end);
 
-        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); startDrawing(e.touches[0]); });
-        canvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e.touches[0]); });
-        window.addEventListener('touchend', endDrawing);
-
-        function startDrawing(e) {
+        function start(e) {
             if (!canDraw) return;
             isDrawing = true;
             points = [];
+            finalPanel.style.display = 'none';
+            liveScoreContainer.style.opacity = '1';
+            statusMsg.style.opacity = '0';
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            scoreContainer.style.display = 'none';
-            headerText.style.opacity = '0';
-            hintText.style.opacity = '0';
-            addPoint(e.clientX, e.clientY);
         }
 
         function draw(e) {
             if (!isDrawing) return;
-            addPoint(e.clientX, e.clientY);
-            renderLine();
+            points.push({ x: e.clientX, y: e.clientY });
+            render();
+            if (points.length > 10) {
+                const results = analyzeCircle(points);
+                updateLiveScore(results.score);
+            }
         }
 
-        function addPoint(x, y) {
-            points.push({ x, y });
-        }
-
-        function renderLine() {
+        function render() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw Ghost Guide (The "Ideal" Circle based on current fit)
+            if (points.length > 10) {
+                const fit = analyzeCircle(points);
+                ctx.beginPath();
+                ctx.arc(fit.cx, fit.cy, fit.avgR, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+
+            // Draw User Line
             ctx.beginPath();
-            ctx.strokeStyle = '#00f2ff';
+            ctx.strokeStyle = varColor(parseFloat(liveValue.innerText));
             ctx.lineWidth = 4;
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
-            ctx.shadowBlur = 15;
-            ctx.shadowColor = '#00f2ff';
-
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = ctx.strokeStyle;
+            
             for (let i = 0; i < points.length; i++) {
                 if (i === 0) ctx.moveTo(points[i].x, points[i].y);
                 else ctx.lineTo(points[i].x, points[i].y);
             }
             ctx.stroke();
+            ctx.shadowBlur = 0;
         }
 
-        function endDrawing() {
+        function varColor(score) {
+            if (score < 40) return '#ff4d4d';
+            if (score < 80) return '#ffd11a';
+            return '#00f2ff';
+        }
+
+        function updateLiveScore(val) {
+            liveValue.innerText = val.toFixed(1) + "%";
+        }
+
+        function analyzeCircle(pts) {
+            let sumX = 0, sumY = 0;
+            pts.forEach(p => { sumX += p.x; sumY += p.y; });
+            const cx = sumX / pts.length;
+            const cy = sumY / pts.length;
+
+            let totalR = 0;
+            const dists = pts.map(p => {
+                const d = Math.sqrt((p.x - cx)**2 + (p.y - cy)**2);
+                totalR += d;
+                return d;
+            });
+            const avgR = totalR / pts.length;
+
+            // Strict Penalty Logic
+            let variance = 0;
+            let sharpTurns = 0;
+            let topWeight = 0, botWeight = 0;
+
+            for (let i = 0; i < dists.length; i++) {
+                variance += Math.abs(dists[i] - avgR);
+                
+                // Directional Change Check (Detection for heart-top "dip")
+                if (i > 2) {
+                    const v1 = { x: pts[i-1].x - pts[i-2].x, y: pts[i-1].y - pts[i-2].y };
+                    const v2 = { x: pts[i].x - pts[i-1].x, y: pts[i].y - pts[i-1].y };
+                    const dot = (v1.x * v2.x + v1.y * v2.y) / (Math.sqrt(v1.x**2+v1.y**2)*Math.sqrt(v2.x**2+v2.y**2));
+                    if (dot < 0.7) sharpTurns++; // Sudden directional change
+                }
+
+                // Distribution Check
+                if (pts[i].y < cy) topWeight++; else botWeight++;
+            }
+
+            const varScore = (variance / pts.length) / avgR; // Lower is better
+            const symmetryPenalty = Math.abs(topWeight - botWeight) / pts.length;
+            const sharpPenalty = (sharpTurns / pts.length) * 5;
+
+            // Strict Scaling
+            let finalScore = 100 - (varScore * 400) - (symmetryPenalty * 100) - (sharpPenalty * 100);
+            
+            // Loop closure check
+            if (!isDrawing) {
+                const gap = Math.sqrt((pts[0].x - pts[pts.length-1].x)**2 + (pts[0].y - pts[pts.length-1].y)**2);
+                finalScore -= (gap / avgR) * 50;
+            }
+
+            return { score: Math.max(0, finalScore), cx, cy, avgR };
+        }
+
+        function end() {
             if (!isDrawing) return;
             isDrawing = false;
-            if (points.length < 20) {
-                resetUI();
-                return;
-            }
             canDraw = false;
-            calculateScore();
-        }
-
-        function calculateScore() {
-            // 1. Center of mass
-            let sumX = 0, sumY = 0;
-            points.forEach(p => { sumX += p.x; sumY += p.y; });
-            const centerX = sumX / points.length;
-            const centerY = sumY / points.length;
-
-            // 2. Average Radius
-            let totalRadius = 0;
-            const radii = points.map(p => {
-                const dist = Math.sqrt((p.x - centerX) ** 2 + (p.y - centerY) ** 2);
-                totalRadius += dist;
-                return dist;
-            });
-            const avgRadius = totalRadius / points.length;
-
-            // 3. Mathematical Variance (The Penalty)
-            let variance = 0;
-            radii.forEach(r => {
-                variance += Math.abs(r - avgRadius);
-            });
-            const avgVariance = variance / points.length;
-
-            // 4. Smoothness / Closing the loop penalty
-            const startPoint = points[0];
-            const endPoint = points[points.length - 1];
-            const gap = Math.sqrt((startPoint.x - endPoint.x) ** 2 + (startPoint.y - endPoint.y) ** 2);
-            const gapPenalty = (gap / avgRadius) * 100;
-
-            // Calculate final percentage
-            // We scale the variance against the radius. 0.0 variance = 100%
-            let score = 100 - ( (avgVariance / avgRadius) * 100 ) - (gapPenalty * 0.5);
             
-            if (score < 0) score = 0;
-            displayScore(score);
-        }
-
-        function displayScore(score) {
-            scoreValue.innerText = score.toFixed(2) + "%";
+            const results = analyzeCircle(points);
+            const score = results.score;
             
-            let message = "";
-            if (score >= 95) message = "Are you a robot?";
-            else if (score >= 80) message = "Almost perfect!";
-            else if (score >= 60) message = "Decent human effort.";
-            else message = "That's... not a circle.";
+            updateLiveScore(score);
+            liveScoreContainer.style.opacity = '0.3';
+            
+            let msg = "";
+            if (score > 95) msg = "Are you a robot?";
+            else if (score > 85) msg = "Almost perfect!";
+            else if (score > 50) msg = "A bit wonky, isn't it?";
+            else msg = "That's... definitely not a circle.";
 
-            feedbackText.innerText = message;
-            scoreContainer.style.display = 'flex';
+            feedback.innerText = msg;
+            finalPanel.style.display = 'flex';
+            
+            // Draw comparison overlay
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.arc(results.cx, results.cy, results.avgR, 0, Math.PI*2);
+            ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+            ctx.stroke();
+            ctx.setLineDash([]);
         }
 
-        retryBtn.addEventListener('click', () => {
-            resetUI();
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        });
-
-        function resetUI() {
+        function resetGame() {
             canDraw = true;
-            scoreContainer.style.display = 'none';
-            headerText.style.opacity = '0.6';
-            hintText.style.opacity = '0.4';
+            points = [];
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            finalPanel.style.display = 'none';
+            liveScoreContainer.style.opacity = '0';
+            statusMsg.style.opacity = '0.3';
         }
-
     </script>
 </body>
 </html>
