@@ -1,648 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Legacy of Nissan | JDM Performance</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
-    <style>
-        /* === VARIABLES & RESET === */
-        :root {
-            --nissan-red: #c3002f;
-            --nissan-dark-red: #8a001d;
-            --bg-white: #f8f9fa;
-            --text-dark: #121212;
-            --text-muted: #666666;
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(195, 0, 47, 0.15);
-            --glossy-shadow: 0 8px 32px 0 rgba(195, 0, 47, 0.1);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nissan Legacy | JDM History</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+<style>
+:root{
+--red:#e10600;
+--darkred:#990000;
+--white:#ffffff;
+--light:#f5f5f5;
+--glass:rgba(255,255,255,0.2);
+}
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-white);
-            color: var(--text-dark);
-            overflow-x: hidden;
-        }
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
 
-        /* === TYPOGRAPHY & UTILITIES === */
-        h1, h2, h3 { font-weight: 800; text-transform: uppercase; }
-        .text-red { color: var(--nissan-red); }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 0;
-        }
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(120deg,#ffffff,#f2f2f2);
+color:#111;
+overflow-x:hidden;
+}
 
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            box-shadow: var(--glossy-shadow);
-        }
+/* NAVBAR */
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(255,255,255,0.9);
+backdrop-filter:blur(10px);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 50px;
+z-index:1000;
+border-bottom:2px solid var(--red);
+}
 
-        /* === SCROLL ANIMATIONS (Triggered by JS) === */
-        .blur-in {
-            opacity: 0;
-            filter: blur(10px);
-            transform: translateY(40px) scale(0.95);
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .blur-in.visible {
-            opacity: 1;
-            filter: blur(0);
-            transform: translateY(0) scale(1);
-        }
+nav a{
+text-decoration:none;
+color:#111;
+font-weight:600;
+margin-left:20px;
+transition:0.3s;
+}
 
-        .slide-right {
-            opacity: 0;
-            filter: blur(8px);
-            transform: translateX(-50px);
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .slide-right.visible {
-            opacity: 1;
-            filter: blur(0);
-            transform: translateX(0);
-        }
+nav a:hover{
+color:var(--red);
+}
 
-        /* === HERO SECTION === */
-        #hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            background: radial-gradient(circle at center, #ffffff 0%, #eaeaea 100%);
-        }
+/* HERO */
+#hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(135deg,#ffffff 60%, #ffe6e6);
+position:relative;
+overflow:hidden;
+}
 
-        /* Speed lines / Motion effect */
-        .speed-lines {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: repeating-linear-gradient(
-                90deg,
-                transparent,
-                transparent 100px,
-                rgba(195, 0, 47, 0.03) 100px,
-                rgba(195, 0, 47, 0.03) 102px
-            );
-            animation: speed 0.5s linear infinite;
-            z-index: 1;
-        }
+#hero h1{
+font-size:4rem;
+font-weight:800;
+color:var(--red);
+}
 
-        @keyframes speed {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-102px); }
-        }
+#hero p{
+font-size:1.3rem;
+margin:20px 0;
+}
 
-        /* Particles */
-        .particle {
-            position: absolute;
-            background: var(--nissan-red);
-            border-radius: 50%;
-            opacity: 0.6;
-            pointer-events: none;
-            z-index: 2;
-            animation: floatUp 4s linear infinite;
-        }
+.cta{
+padding:15px 35px;
+background:var(--red);
+color:white;
+border:none;
+border-radius:30px;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
 
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-        }
+.cta:hover{
+background:var(--darkred);
+box-shadow:0 0 20px var(--red);
+}
 
-        .hero-content {
-            position: relative;
-            z-index: 10;
-        }
+/* SECTION */
+section{
+padding:100px 10%;
+}
 
-        #hero h1 {
-            font-size: 5rem;
-            letter-spacing: -2px;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-            text-shadow: 0px 10px 20px rgba(0,0,0,0.1);
-        }
+h2{
+text-align:center;
+margin-bottom:50px;
+font-size:2.5rem;
+color:var(--red);
+}
 
-        #hero h1 span {
-            background: linear-gradient(90deg, var(--nissan-red), var(--nissan-dark-red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+/* TIMELINE */
+.timeline{
+border-left:4px solid var(--red);
+padding-left:30px;
+}
 
-        #hero p {
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: var(--text-muted);
-            letter-spacing: 4px;
-            margin-bottom: 40px;
-        }
+.timeline div{
+margin-bottom:40px;
+opacity:0;
+transform:translateX(-20px);
+transition:0.8s;
+}
 
-        .btn-rev {
-            display: inline-block;
-            padding: 16px 40px;
-            background: var(--nissan-red);
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            box-shadow: 0 10px 20px rgba(195, 0, 47, 0.3);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+.timeline div.show{
+opacity:1;
+transform:translateX(0);
+}
 
-        .btn-rev:hover {
-            background: var(--nissan-dark-red);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(195, 0, 47, 0.5), 0 0 20px rgba(195, 0, 47, 0.4);
-        }
+/* CAR GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
 
-        /* === TIMELINE SECTION === */
-        #timeline-section {
-            background: #ffffff;
-            position: relative;
-        }
+.card{
+background:white;
+border-radius:15px;
+padding:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+transition:0.4s;
+position:relative;
+overflow:hidden;
+}
 
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 60px;
-            color: var(--text-dark);
-        }
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 15px 40px rgba(225,6,0,0.3);
+}
 
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+.card h3{
+color:var(--red);
+margin-bottom:10px;
+}
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background: linear-gradient(to bottom, var(--nissan-red), transparent);
-            top: 0; bottom: 0; left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
+.card p{
+font-size:0.9rem;
+}
 
-        .timeline-item {
-            padding: 20px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-            margin-bottom: 40px;
-        }
+/* COUNTERS */
+.stats{
+display:flex;
+justify-content:space-around;
+text-align:center;
+flex-wrap:wrap;
+}
 
-        .timeline-item:nth-child(odd) { left: 0; text-align: right; }
-        .timeline-item:nth-child(even) { left: 50%; text-align: left; }
+.stat{
+margin:20px;
+}
 
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border: 4px solid var(--nissan-red);
-            border-radius: 50%;
-            top: 30px;
-            box-shadow: 0 0 15px rgba(195, 0, 47, 0.5);
-        }
+.stat h3{
+font-size:2.5rem;
+color:var(--red);
+}
 
-        .timeline-item:nth-child(odd)::after { right: -12px; }
-        .timeline-item:nth-child(even)::after { left: -12px; }
+/* FOOTER */
+footer{
+background:var(--red);
+color:white;
+text-align:center;
+padding:30px;
+margin-top:50px;
+}
 
-        .timeline-content {
-            padding: 20px;
-            transition: transform 0.3s ease;
-        }
-        
-        .timeline-content:hover { transform: scale(1.05); }
-
-        .timeline-content h3 { color: var(--nissan-red); font-size: 1.5rem; }
-        .timeline-content h4 { color: var(--text-dark); margin: 5px 0 10px; font-weight: 600; }
-
-        /* === CAR GRID SECTION === */
-        #jdm-cars, #modern-era {
-            background: linear-gradient(180deg, var(--bg-white) 0%, #ffffff 100%);
-        }
-
-        .car-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .car-card {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .car-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--nissan-red);
-            box-shadow: 0 15px 40px rgba(195, 0, 47, 0.2), inset 0 0 15px rgba(195, 0, 47, 0.05);
-        }
-
-        .car-img-container {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
-            border-radius: 12px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-weight: 600;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Optional actual image support inside container */
-        .car-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .car-card:hover .car-img-container img {
-            transform: scale(1.1);
-        }
-
-        .car-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .car-info h3 span {
-            font-size: 0.9rem;
-            background: var(--nissan-red);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
-        .specs {
-            list-style: none;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            padding-top: 15px;
-        }
-
-        .specs li {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        .specs li strong { color: var(--text-dark); }
-
-        /* === FOOTER === */
-        footer {
-            background: #000000;
-            color: #ffffff;
-            text-align: center;
-            padding: 60px 20px;
-            position: relative;
-        }
-
-        .footer-divider {
-            height: 4px;
-            width: 100%;
-            background: linear-gradient(90deg, transparent, var(--nissan-red), transparent);
-            position: absolute;
-            top: 0; left: 0;
-        }
-
-        footer h2 { font-size: 2rem; margin-bottom: 10px; letter-spacing: 2px; }
-        footer p { color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px; }
-        
-        .japanese-text {
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.1);
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: 5px;
-        }
-
-        /* === MEDIA QUERIES === */
-        @media (max-width: 768px) {
-            #hero h1 { font-size: 3rem; }
-            .timeline::before { left: 30px; }
-            .timeline-item { width: 100%; padding-left: 70px; padding-right: 0; }
-            .timeline-item:nth-child(even), .timeline-item:nth-child(odd) { left: 0; text-align: left; }
-            .timeline-item:nth-child(even)::after, .timeline-item:nth-child(odd)::after { left: 20px; }
-            .japanese-text { display: none; }
-        }
-    </style>
+/* RESPONSIVE */
+@media(max-width:768px){
+#hero h1{font-size:2.5rem;}
+nav{padding:15px 20px;}
+}
+</style>
 </head>
+
 <body>
 
-    <section id="hero">
-        <div class="speed-lines"></div>
-        <div id="particles-container"></div>
-        <div class="hero-content blur-in">
-            <h1>The Legacy of <span>Nissan</span></h1>
-            <p>FROM SKYLINE TO SUPERCAR</p>
-            <button class="btn-rev" onclick="revEngine()">Start Engine</button>
-        </div>
-    </section>
+<nav>
+<div><strong>Nissan Legacy</strong></div>
+<div>
+<a href="#history">History</a>
+<a href="#cars">JDM Cars</a>
+<a href="#stats">Performance</a>
+</div>
+</nav>
 
-    <section id="timeline-section">
-        <div class="container">
-            <h2 class="section-title blur-in">The <span class="text-red">History</span></h2>
-            <div class="timeline">
-                
-                <div class="timeline-item slide-right">
-                    <div class="glass-panel timeline-content">
-                        <h3>1933</h3>
-                        <h4>Jidosha-Seizo Kabushiki-Kaisha</h4>
-                        <p>The company that would become Nissan is established in Yokohama, Japan.</p>
-                    </div>
-                </div>
+<section id="hero">
+<h1>The Legacy of Nissan</h1>
+<p>From Skyline to Supercar — The Evolution of JDM Power</p>
+<button class="cta">Explore History</button>
+</section>
 
-                <div class="timeline-item slide-right">
-                    <div class="glass-panel timeline-content">
-                        <h3>1969</h3>
-                        <h4>Birth of the Z & GT-R</h4>
-                        <p>The legendary Fairlady Z (Datsun 240Z) and the first-generation Skyline GT-R (PGC10 "Hakosuka") are introduced.</p>
-                    </div>
-                </div>
+<section id="history">
+<h2>Nissan Timeline</h2>
+<div class="timeline">
+<div>1933 – Nissan Motor Co. Founded</div>
+<div>1969 – Skyline GT-R R32 introduced</div>
+<div>1999 – Legendary R34 launched</div>
+<div>2007 – GT-R R35 changes supercar world</div>
+<div>2023 – New Nissan Z continues legacy</div>
+</div>
+</section>
 
-                <div class="timeline-item slide-right">
-                    <div class="glass-panel timeline-content">
-                        <h3>1989</h3>
-                        <h4>The Godzilla Era Begins</h4>
-                        <p>Nissan unleashes the Skyline GT-R R32, dominating Group A racing and earning the nickname "Godzilla."</p>
-                    </div>
-                </div>
+<section id="cars">
+<h2>Legendary JDM Machines</h2>
+<div class="grid">
 
-                <div class="timeline-item slide-right">
-                    <div class="glass-panel timeline-content">
-                        <h3>2007</h3>
-                        <h4>The Supercar Killer</h4>
-                        <p>The R35 GT-R launches independently from the Skyline nameplate, shattering Nürburgring records.</p>
-                    </div>
-                </div>
+<div class="card">
+<h3>Skyline GT-R R32</h3>
+<p>Year: 1989<br>Engine: 2.6L Twin Turbo RB26<br>Power: 276 HP</p>
+</div>
 
-            </div>
-        </div>
-    </section>
+<div class="card">
+<h3>Skyline GT-R R34</h3>
+<p>Year: 1999<br>Engine: 2.6L Twin Turbo RB26<br>Power: 276 HP</p>
+</div>
 
-    <section id="jdm-cars">
-        <div class="container">
-            <h2 class="section-title blur-in">JDM <span class="text-red">Legends</span></h2>
-            <div class="car-grid">
-                
-                <div class="glass-panel car-card blur-in">
-                    <div class="car-img-container">
-                        [ Skyline R32 Image ]
-                    </div>
-                    <div class="car-info">
-                        <h3>Skyline GT-R <span>R32</span></h3>
-                        <ul class="specs">
-                            <li><strong>Engine:</strong> RB26DETT 2.6L TT I6</li>
-                            <li><strong>Power:</strong> 276 HP (Claimed)</li>
-                            <li><strong>Era:</strong> 1989 - 1994</li>
-                        </ul>
-                    </div>
-                </div>
+<div class="card">
+<h3>GT-R R35</h3>
+<p>Year: 2007<br>Engine: 3.8L Twin Turbo V6<br>Power: 565 HP</p>
+</div>
 
-                <div class="glass-panel car-card blur-in">
-                    <div class="car-img-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Nissan_Skyline_GT-R_R34_V_Spec_II.jpg" alt="Nissan Z">
-                    </div>
-                    <div class="car-info">
-                        <h3>Skyline GT-R <span>R34</span></h3>
-                        <ul class="specs">
-                            <li><strong>Engine:</strong> RB26DETT 2.6L TT I6</li>
-                            <li><strong>Power:</strong> 276 HP (Claimed)</li>
-                            <li><strong>Era:</strong> 1999 - 2002</li>
-                        </ul>
-                    </div>
-                </div>
+<div class="card">
+<h3>Silvia S15</h3>
+<p>Year: 1999<br>Engine: 2.0L Turbo<br>Power: 250 HP</p>
+</div>
 
-                <div class="glass-panel car-card blur-in">
-                    <div class="car-img-container">
-                        [ Silvia S15 Image ]
-                    </div>
-                    <div class="car-info">
-                        <h3>Silvia <span>S15</span></h3>
-                        <ul class="specs">
-                            <li><strong>Engine:</strong> SR20DET 2.0L Turbo I4</li>
-                            <li><strong>Power:</strong> 250 HP</li>
-                            <li><strong>Era:</strong> 1999 - 2002</li>
-                        </ul>
-                    </div>
-                </div>
+<div class="card">
+<h3>370Z</h3>
+<p>Year: 2009<br>Engine: 3.7L V6<br>Power: 332 HP</p>
+</div>
 
-                <div class="glass-panel car-card blur-in">
-                    <div class="car-img-container">
-                        [ 370Z Image ]
-                    </div>
-                    <div class="car-info">
-                        <h3>Fairlady Z <span>370Z</span></h3>
-                        <ul class="specs">
-                            <li><strong>Engine:</strong> VQ37VHR 3.7L V6</li>
-                            <li><strong>Power:</strong> 332 HP</li>
-                            <li><strong>Era:</strong> 2009 - 2020</li>
-                        </ul>
-                    </div>
-                </div>
+<div class="card">
+<h3>Fairlady Z 300ZX</h3>
+<p>Year: 1989<br>Engine: 3.0L Twin Turbo<br>Power: 300 HP</p>
+</div>
 
-                <div class="glass-panel car-card blur-in">
-                    <div class="car-img-container">
-                        [ 240SX Image ]
-                    </div>
-                    <div class="car-info">
-                        <h3>240SX <span>S13/S14</span></h3>
-                        <ul class="specs">
-                            <li><strong>Engine:</strong> KA24DE 2.4L I4</li>
-                            <li><strong>Power:</strong> 155 HP</li>
-                            <li><strong>Era:</strong> 1989 - 1998</li>
-                        </ul>
-                    </div>
-                </div>
+<div class="card">
+<h3>Nissan Z (New)</h3>
+<p>Year: 2023<br>Engine: 3.0L Twin Turbo V6<br>Power: 400 HP</p>
+</div>
 
-                <div class="glass-panel car-card blur-in">
-                    <div class="car-img-container">
-                        [ 300ZX Image ]
-                    </div>
-                    <div class="car-info">
-                        <h3>Fairlady Z <span>300ZX</span></h3>
-                        <ul class="specs">
-                            <li><strong>Engine:</strong> VG30DETT 3.0L TT V6</li>
-                            <li><strong>Power:</strong> 300 HP</li>
-                            <li><strong>Era:</strong> 1989 - 2000</li>
-                        </ul>
-                    </div>
-                </div>
+<div class="card">
+<h3>Nissan Magnite</h3>
+<p>Year: 2020<br>Engine: 1.0L Turbo<br>Power: 100 HP</p>
+</div>
 
-            </div>
-        </div>
-    </section>
+</div>
+</section>
 
-    <section id="modern-era">
-        <div class="container">
-            <h2 class="section-title blur-in">The <span class="text-red">Modern</span> Era</h2>
-            <div class="car-grid">
-                
-                <div class="glass-panel car-card blur-in">
-                    <div class="car-img-container">
-                        [ GT-R R35 Image ]
-                    </div>
-                    <div class="car-info">
-                        <h3>GT-R <span>R35</span></h3>
-                        <ul class="specs">
-                            <li><strong>Engine:</strong> VR38DETT 3.8L TT V6</li>
-                            <li><strong>Power:</strong> 565+ HP</li>
-                            <li><strong>Era:</strong> 2007 - Present</li>
-                        </ul>
-                    </div>
-                </div>
+<section id="stats">
+<h2>Performance Highlights</h2>
+<div class="stats">
+<div class="stat">
+<h3 id="hp">0</h3>
+<p>Max Horsepower</p>
+</div>
+<div class="stat">
+<h3 id="speed">0</h3>
+<p>Top Speed (km/h)</p>
+</div>
+<div class="stat">
+<h3 id="years">0</h3>
+<p>Years of Innovation</p>
+</div>
+</div>
+</section>
 
-                <div class="glass-panel car-card blur-in">
-                    <div class="car-img-container">
-                        [ Nissan Z Image ]
-                    </div>
-                    <div class="car-info">
-                        <h3>Nissan Z <span>RZ34</span></h3>
-                        <ul class="specs">
-                            <li><strong>Engine:</strong> VR30DDTT 3.0L TT V6</li>
-                            <li><strong>Power:</strong> 400 HP</li>
-                            <li><strong>Era:</strong> 2023 - Present</li>
-                        </ul>
-                    </div>
-                </div>
+<footer>
+© 2026 Nissan Legacy Tribute | Built by Sanchit
+</footer>
 
-                <div class="glass-panel car-card blur-in">
-                    <div class="car-img-container" style="background: linear-gradient(45deg, #2a2a2a, #1a1a1a); color: white;">
-                        [ Magnite Image ]
-                    </div>
-                    <div class="car-info">
-                        <h3>Magnite <span>Compact</span></h3>
-                        <ul class="specs">
-                            <li><strong>Engine:</strong> HRA0 1.0L Turbo</li>
-                            <li><strong>Power:</strong> 100 HP</li>
-                            <li><strong>Vibe:</strong> Urban Performance</li>
-                        </ul>
-                    </div>
-                </div>
+<script>
+// Scroll animation for timeline
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+},{threshold:0.5});
 
-            </div>
-        </div>
-    </section>
+document.querySelectorAll(".timeline div").forEach(el=>{
+observer.observe(el);
+});
 
-    <footer>
-        <div class="footer-divider"></div>
-        <h2>NISSAN</h2>
-        <p>Innovation that excites. For the street, for the track.</p>
-        <div class="japanese-text">日産自動車</div>
-    </footer>
+// Counter animation
+function animateValue(id,start,end,duration){
+let range=end-start;
+let current=start;
+let increment=end>start?1:-1;
+let stepTime=Math.abs(Math.floor(duration/range));
+let obj=document.getElementById(id);
+let timer=setInterval(()=>{
+current+=increment;
+obj.textContent=current;
+if(current==end){clearInterval(timer);}
+},stepTime);
+}
 
-    <script>
-        // 1. PARTICLES GENERATOR (Red floating sparks for Hero)
-        const particlesContainer = document.getElementById('particles-container');
-        const particleCount = 30;
+animateValue("hp",0,565,2000);
+animateValue("speed",0,315,2000);
+animateValue("years",0,90,2000);
+</script>
 
-        for (let i = 0; i < particleCount; i++) {
-            let particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            // Randomize size, position, and animation delay
-            let size = Math.random() * 6 + 2; // 2px to 8px
-            let posX = Math.random() * 100; // 0vw to 100vw
-            let delay = Math.random() * 4; // 0s to 4s
-            let duration = Math.random() * 3 + 3; // 3s to 6s
-
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.left = `${posX}vw`;
-            particle.style.animationDelay = `${delay}s`;
-            particle.style.animationDuration = `${duration}s`;
-
-            particlesContainer.appendChild(particle);
-        }
-
-        // 2. SCROLL ANIMATIONS (Intersection Observer)
-        const observerOptions = {
-            threshold: 0.15, // Trigger when 15% visible
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // Optional: stop observing once animated
-                    // observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements
-        document.querySelectorAll('.blur-in, .slide-right').forEach(el => {
-            observer.observe(el);
-        });
-
-        // 3. OPTIONAL ENGINE SOUND FX
-        function revEngine() {
-            // Note: Browsers require user interaction to play audio, which the click provides.
-            // Replace the URL with an actual short mp3 of an RB26 or VR38 revving.
-            try {
-                // Placeholder Audio - will throw an error in console if file doesn't exist, 
-                // but won't break the page.
-                const audio = new Audio('https://www.myinstants.com/media/sounds/nissan-skyline-gtr-r34-exhaust-sound.mp3'); 
-                audio.volume = 0.5;
-                audio.play().catch(e => {
-                    alert("VROOM! (Add an actual mp3 file link to the JS to hear the real sound!)");
-                });
-                
-                // Visual effect on button press
-                const btn = document.querySelector('.btn-rev');
-                btn.style.transform = 'scale(0.95)';
-                setTimeout(() => { btn.style.transform = ''; }, 200);
-
-            } catch(err) {
-                console.log("Audio play failed.");
-            }
-        }
-    </script>
 </body>
 </html>
