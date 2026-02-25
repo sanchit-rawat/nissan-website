@@ -3,47 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Legacy of Nissan | Premium JDM History</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <title>Top Minecraft PvPers | Legends of the Arena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <style>
-        /* === CORE VARIABLES === */
+        /* === VARIABLES & RESET === */
         :root {
-            --nissan-red: #c3002f;
-            --neon-red: #ff1e4d;
-            --pure-white: #ffffff;
-            --bg-light: #f5f6fa;
-            --text-main: #111111;
-            --text-muted: #555555;
-            --glass-bg: rgba(255, 255, 255, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.8);
-            --shadow-premium: 0 10px 40px rgba(0, 0, 0, 0.08);
-            --glow-red: 0 0 20px rgba(195, 0, 47, 0.6);
+            --bg-dark: #0a0a0a;
+            --bg-panel: #141414;
+            --mc-green: #00e676;
+            --mc-green-glow: rgba(0, 230, 118, 0.5);
+            --mc-dark-green: #1b5e20;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --pixel-border: 4px solid var(--mc-green);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-light);
+            font-family: 'VT323', monospace;
+            background-color: var(--bg-dark);
             color: var(--text-main);
             overflow-x: hidden;
+            font-size: 1.2rem;
         }
 
-        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
-        
-        .container { max-width: 1280px; margin: 0 auto; padding: 100px 20px; }
-        .text-red { color: var(--nissan-red); }
+        h1, h2, h3, .pixel-btn, .rank-badge {
+            font-family: 'Press Start 2P', cursive;
+            text-transform: uppercase;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 0;
+        }
 
         /* === SCROLL ANIMATIONS === */
-        .blur-reveal {
+        .fade-in {
             opacity: 0;
-            filter: blur(15px);
-            transform: translateY(50px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        .blur-reveal.in-view {
+        .fade-in.visible {
             opacity: 1;
-            filter: blur(0);
             transform: translateY(0);
         }
 
@@ -55,418 +64,433 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: radial-gradient(circle at center, #ffffff 0%, #e0e0e0 100%);
+            background: linear-gradient(to bottom, #000000, var(--bg-dark));
             overflow: hidden;
         }
 
-        /* Animated Speed Lines */
-        .speed-lines {
+        /* Animated Pixel Particles */
+        #particles {
             position: absolute;
-            top: 0; left: 0; width: 200%; height: 100%;
-            background: repeating-linear-gradient(
-                90deg, transparent, transparent 50px,
-                rgba(195, 0, 47, 0.03) 50px, rgba(195, 0, 47, 0.03) 52px
-            );
-            animation: moveLines 0.4s linear infinite;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: 1;
+            pointer-events: none;
         }
-        @keyframes moveLines {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-52px); }
-        }
-
-        /* Floating Red Particles */
-        #particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
-        .particle {
+        .pixel-particle {
             position: absolute;
-            background-color: var(--nissan-red);
-            border-radius: 50%;
-            opacity: 0;
-            animation: floatParticle 4s ease-in infinite;
-        }
-        @keyframes floatParticle {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            20% { opacity: 0.6; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+            width: 10px; height: 10px;
+            background-color: var(--mc-green);
+            opacity: 0.3;
+            animation: floatUp linear infinite;
         }
 
-        .hero-content { position: relative; z-index: 10; padding: 40px; }
-        #hero h1 { font-size: 5.5rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 10px; text-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        #hero p { font-size: 1.5rem; font-weight: 500; letter-spacing: 5px; color: var(--text-muted); margin-bottom: 40px; }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
 
-        .cta-btn {
-            display: inline-block;
-            padding: 18px 45px;
-            background: linear-gradient(45deg, var(--nissan-red), var(--neon-red));
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 50px;
-            letter-spacing: 1px;
-            box-shadow: var(--glow-red);
-            transition: all 0.3s ease;
+        .hero-content {
             position: relative;
-            overflow: hidden;
-        }
-        .cta-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 30, 77, 0.8);
+            z-index: 10;
         }
 
-        /* === TIMELINE SECTION === */
-        #timeline { background: var(--pure-white); position: relative; }
-        .section-header { text-align: center; font-size: 3rem; margin-bottom: 80px; }
-        
-        .timeline-container { position: relative; max-width: 900px; margin: 0 auto; }
-        .timeline-container::before {
-            content: ''; position: absolute; width: 4px;
-            background: linear-gradient(to bottom, var(--nissan-red), transparent);
-            top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
+        #hero h1 {
+            font-size: 3rem;
+            color: var(--text-main);
+            text-shadow: 4px 4px 0px var(--mc-dark-green), 0 0 20px var(--mc-green-glow);
+            margin-bottom: 20px;
+            line-height: 1.4;
         }
 
-        .timeline-box { width: 50%; padding: 20px 40px; position: relative; margin-bottom: 50px; }
-        .timeline-box:nth-child(odd) { left: 0; text-align: right; }
-        .timeline-box:nth-child(even) { left: 50%; text-align: left; }
-        
-        .timeline-box::after {
-            content: ''; position: absolute; width: 20px; height: 20px;
-            background: var(--pure-white); border: 4px solid var(--nissan-red);
-            border-radius: 50%; top: 30px; box-shadow: var(--glow-red);
-        }
-        .timeline-box:nth-child(odd)::after { right: -12px; }
-        .timeline-box:nth-child(even)::after { left: -12px; }
-
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-premium);
-            transition: transform 0.3s ease;
-        }
-        .glass-card:hover { transform: translateY(-5px); }
-        .timeline-year { font-size: 2rem; color: var(--nissan-red); font-weight: 900; margin-bottom: 10px; }
-
-        /* === CAR SHOWCASE SECTION === */
-        #showroom { background: linear-gradient(180deg, var(--bg-light), var(--pure-white)); }
-        .car-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
+        #hero p {
+            font-size: 2rem;
+            color: var(--mc-green);
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 0px #000;
         }
 
-        .car-card {
-            background: var(--pure-white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-premium);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 2px solid transparent;
+        /* Pixel Button */
+        .pixel-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--bg-dark);
+            color: var(--mc-green);
+            border: var(--pixel-border);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.2s;
+            box-shadow: 4px 4px 0px var(--mc-dark-green);
             cursor: pointer;
         }
-        .car-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--nissan-red);
-            box-shadow: 0 20px 50px rgba(195, 0, 47, 0.2), inset 0 0 20px rgba(195, 0, 47, 0.05);
+        .pixel-btn:hover {
+            background-color: var(--mc-green);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--mc-green-glow);
+            transform: translate(-2px, -2px);
         }
 
-        .car-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        /* === RANKING SECTION === */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 60px;
+            color: var(--mc-green);
+            text-shadow: 2px 2px 0px var(--mc-dark-green);
         }
-        .car-card:hover .car-img { transform: scale(1.08); }
 
-        .car-details { padding: 25px; }
-        .car-details h3 { font-size: 1.5rem; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
-        .car-badge { font-size: 0.8rem; background: var(--nissan-red); color: white; padding: 5px 12px; border-radius: 20px; }
-        
-        .car-specs { list-style: none; border-top: 1px solid #eee; padding-top: 15px; }
-        .car-specs li { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.95rem; color: var(--text-muted); }
-        .car-specs strong { color: var(--text-main); }
+        .ranking-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
 
-        /* === PERFORMANCE STATS SECTION === */
-        #stats {
-            background: url('https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+        .player-card {
+            background-color: var(--bg-panel);
+            border: 4px solid #333;
+            padding: 20px;
             position: relative;
-            color: white;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .player-card:hover {
+            border-color: var(--mc-green);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px var(--mc-green-glow);
+        }
+
+        .rank-badge {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: var(--mc-green);
+            color: var(--bg-dark);
+            padding: 10px;
+            font-size: 1.2rem;
+            border: 2px solid #000;
+            box-shadow: 3px 3px 0px #000;
+            z-index: 2;
+        }
+
+        .player-skin {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: #222;
+            border: 2px solid #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            image-rendering: pixelated; /* Keeps MC skins sharp */
+        }
+        .player-skin img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .player-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .player-card p {
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            line-height: 1.2;
+        }
+
+        /* #1 Player Special Styling */
+        .player-card.rank-1 {
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+        .player-card.rank-1 .rank-badge {
+            background: #ffd700;
+        }
+        .player-card.rank-1:hover {
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        /* === PVP MODES SECTION === */
+        #modes {
+            background-color: #0f0f0f;
+            border-top: 4px solid #222;
+            border-bottom: 4px solid #222;
+        }
+
+        .modes-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .mode-block {
+            background: var(--bg-dark);
+            border: 2px solid #444;
+            padding: 20px 30px;
+            text-align: center;
+            transition: all 0.3s;
+            width: calc(33.333% - 20px);
+            min-width: 200px;
+        }
+
+        .mode-block:hover {
+            background: var(--mc-dark-green);
+            border-color: var(--mc-green);
+            transform: scale(1.05);
+        }
+
+        .mode-block h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .mode-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        /* === COMMUNITY SECTION === */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            gap: 30px;
+        }
+
+        .stat-box {
             text-align: center;
         }
-        #stats::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(17, 17, 17, 0.85);
+
+        .stat-number {
+            font-size: 4rem;
+            color: var(--mc-green);
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 3px 3px 0px var(--mc-dark-green);
         }
-        .stats-grid {
-            position: relative; z-index: 10;
-            display: flex; justify-content: space-around; flex-wrap: wrap; gap: 40px;
+
+        .stat-label {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
-        .stat-item h2 { font-size: 4.5rem; color: var(--nissan-red); text-shadow: var(--glow-red); margin-bottom: 10px; }
-        .stat-item p { font-size: 1.2rem; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
+
+        .discord-box {
+            background: linear-gradient(45deg, #1a1a1a, var(--bg-panel));
+            border: var(--pixel-border);
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
         /* === FOOTER === */
         footer {
-            background: #050505; color: white; text-align: center; padding: 80px 20px; position: relative;
+            background-color: #000;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 4px solid var(--mc-green);
         }
-        .footer-divider {
-            position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-            background: linear-gradient(90deg, transparent, var(--nissan-red), transparent);
-        }
-        .footer-content h2 { font-size: 2.5rem; letter-spacing: 4px; margin-bottom: 10px; }
-        .footer-content p { color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px; }
-        .jp-text {
-            font-size: 4rem; font-weight: 900; color: rgba(255,255,255,0.05);
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            letter-spacing: 20px; pointer-events: none;
+        
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 10px;
         }
 
-        /* Responsive */
-        @media(max-width: 768px) {
-            #hero h1 { font-size: 3.5rem; }
-            .timeline-container::before { left: 30px; }
-            .timeline-box { width: 100%; padding-left: 70px; }
-            .timeline-box:nth-child(even), .timeline-box:nth-child(odd) { left: 0; text-align: left; }
-            .timeline-box:nth-child(even)::after, .timeline-box:nth-child(odd)::after { left: 20px; }
-            .stats-grid { flex-direction: column; }
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            #hero h1 { font-size: 1.8rem; }
+            #hero p { font-size: 1.2rem; }
+            .section-title { font-size: 1.5rem; }
+            .mode-block { width: 100%; }
         }
     </style>
 </head>
 <body>
 
     <section id="hero">
-        <div class="speed-lines"></div>
         <div id="particles"></div>
-        <div class="hero-content blur-reveal">
-            <h1>The Legacy of <span class="text-red">Nissan</span></h1>
-            <p>FROM SKYLINE TO SUPERCAR</p>
-            <a href="#showroom" class="cta-btn">Enter The Showroom</a>
+        <div class="hero-content fade-in">
+            <h1>Top Minecraft PvPers</h1>
+            <p>The Legends of the Arena</p>
+            <a href="#ranking" class="pixel-btn">Enter The Arena</a>
         </div>
     </section>
 
-    <section id="timeline">
-        <div class="container">
-            <h2 class="section-header blur-reveal">Decades of <span class="text-red">Dominance</span></h2>
-            <div class="timeline-container">
-                
-                <div class="timeline-box blur-reveal">
-                    <div class="glass-card">
-                        <div class="timeline-year">1933</div>
-                        <h4>The Foundation</h4>
-                        <p style="color: var(--text-muted); margin-top: 10px;">Jidosha-Seizo Kabushiki-Kaisha is established in Yokohama, marking the birth of the brand that would become Nissan.</p>
-                    </div>
+    <section id="ranking" class="container">
+        <h2 class="section-title fade-in">Global Leaderboard</h2>
+        <div class="ranking-grid">
+            
+            <div class="player-card rank-1 fade-in">
+                <div class="rank-badge">#1</div>
+                <div class="player-skin">
+                    <img src="https://minotar.net/armor/body/Technoblade/150.png" alt="Technoblade">
                 </div>
+                <h3>Technoblade</h3>
+                <p>The Blood God. Undisputed master of 1.8 PvP, Bedwars, and mind games. Never dies.</p>
+            </div>
 
-                <div class="timeline-box blur-reveal">
-                    <div class="glass-card">
-                        <div class="timeline-year">1969</div>
-                        <h4>Birth of the Legends</h4>
-                        <p style="color: var(--text-muted); margin-top: 10px;">The automotive world is changed forever with the release of the Fairlady Z (240Z) and the Hakosuka Skyline GT-R.</p>
-                    </div>
+            <div class="player-card fade-in">
+                <div class="rank-badge">#2</div>
+                <div class="player-skin">
+                    <img src="https://minotar.net/armor/body/Dream/150.png" alt="Dream">
                 </div>
+                <h3>Dream</h3>
+                <p>1.16+ Axe & Shield genius. Movement and trap specialist. The Manhunt legend.</p>
+            </div>
 
-                <div class="timeline-box blur-reveal">
-                    <div class="glass-card">
-                        <div class="timeline-year">1989</div>
-                        <h4>Godzilla Awakens</h4>
-                        <p style="color: var(--text-muted); margin-top: 10px;">The R32 Skyline GT-R launches, utterly dominating Group A racing and cementing the GT-R legacy.</p>
-                    </div>
+            <div class="player-card fade-in">
+                <div class="rank-badge">#3</div>
+                <div class="player-skin">
+                    <img src="https://minotar.net/armor/body/fruitberries/150.png" alt="Fruitberries">
                 </div>
+                <h3>Fruitberries</h3>
+                <p>UHC and Trap God. Flawless parkour mechanics and block placement awareness.</p>
+            </div>
 
-                <div class="timeline-box blur-reveal">
-                    <div class="glass-card">
-                        <div class="timeline-year">2007</div>
-                        <h4>The Supercar Killer</h4>
-                        <p style="color: var(--text-muted); margin-top: 10px;">Nissan releases the R35 GT-R. Dropping the Skyline name, it becomes a standalone engineering marvel.</p>
-                    </div>
+            <div class="player-card fade-in">
+                <div class="rank-badge">#4</div>
+                <div class="player-skin">
+                    <img src="https://minotar.net/armor/body/sapnap/150.png" alt="Sapnap">
                 </div>
+                <h3>Sapnap</h3>
+                <p>Raw mechanical aggression. Dominates MCC and thrives in close-quarters 1.16+ combat.</p>
+            </div>
 
-                <div class="timeline-box blur-reveal">
-                    <div class="glass-card">
-                        <div class="timeline-year">2024</div>
-                        <h4>The Modern Era</h4>
-                        <p style="color: var(--text-muted); margin-top: 10px;">Honoring its roots with the new Nissan Z, while pushing the boundaries of EV performance globally.</p>
-                    </div>
+            <div class="player-card fade-in">
+                <div class="rank-badge">#5</div>
+                <div class="player-skin">
+                    <img src="https://minotar.net/armor/body/Purpled/150.png" alt="Purpled">
                 </div>
+                <h3>Purpled</h3>
+                <p>Bedwars prodigy turned all-around mechanical beast. Incredible crosshair placement.</p>
+            </div>
 
+            <div class="player-card fade-in">
+                <div class="rank-badge">#6</div>
+                <div class="player-skin">
+                    <img src="https://minotar.net/armor/body/ClownPierce/150.png" alt="ClownPierce">
+                </div>
+                <h3>ClownPierce</h3>
+                <p>Lifesteal SMP terror. Lethal in Crystal PvP, Anchor mechanics, and psychological warfare.</p>
+            </div>
+
+            <div class="player-card fade-in">
+                <div class="rank-badge">#7</div>
+                <div class="player-skin">
+                    <img src="https://minotar.net/armor/body/ItzRealMe/150.png" alt="ItzRealMe">
+                </div>
+                <h3>ItzRealMe</h3>
+                <p>End Crystal PvP God. Lightning-fast inventory management and explosion timing.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="modes">
+        <div class="container fade-in">
+            <h2 class="section-title">Battle Formats</h2>
+            <div class="modes-grid">
+                <div class="mode-block">
+                    <div class="mode-icon">⚔️</div>
+                    <h3>1.8 Sword</h3>
+                    <p>W-Tapping, block-hitting, and raw CPS.</p>
+                </div>
+                <div class="mode-block">
+                    <div class="mode-icon">🔮</div>
+                    <h3>Crystal PvP</h3>
+                    <p>High-tier 1.16+ explosive combat and totems.</p>
+                </div>
+                <div class="mode-block">
+                    <div class="mode-icon">🍎</div>
+                    <h3>UHC</h3>
+                    <p>No natural regen. Golden apples and bow aim.</p>
+                </div>
+                <div class="mode-block">
+                    <div class="mode-icon">🛏️</div>
+                    <h3>Bedwars</h3>
+                    <p>Void kills, bridging mechanics, and strategy.</p>
+                </div>
+                <div class="mode-block">
+                    <div class="mode-icon">☁️</div>
+                    <h3>Skywars</h3>
+                    <p>Fast-paced looting, projectiles, and knockback.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="showroom">
-        <div class="container">
-            <h2 class="section-header blur-reveal">The <span class="text-red">Icons</span></h2>
-            <div class="car-grid">
-                
-                <div class="car-card blur-reveal">
-                    <div style="overflow: hidden;"><img src="https://images.unsplash.com/photo-1616455579100-2ceaa4eb2c37?auto=format&fit=crop&w=800&q=80" alt="R32" class="car-img"></div>
-                    <div class="car-details">
-                        <h3>Skyline GT-R <span class="car-badge">R32</span></h3>
-                        <ul class="car-specs">
-                            <li><span>Year</span> <strong>1989 - 1994</strong></li>
-                            <li><span>Engine</span> <strong>RB26DETT 2.6L TT</strong></li>
-                            <li><span>Power</span> <strong>276 HP</strong></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="car-card blur-reveal">
-                    <div style="overflow: hidden;"><img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80" alt="R34" class="car-img"></div>
-                    <div class="car-details">
-                        <h3>Skyline GT-R <span class="car-badge">R34</span></h3>
-                        <ul class="car-specs">
-                            <li><span>Year</span> <strong>1999 - 2002</strong></li>
-                            <li><span>Engine</span> <strong>RB26DETT 2.6L TT</strong></li>
-                            <li><span>Power</span> <strong>276 HP (Claimed)</strong></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="car-card blur-reveal">
-                    <div style="overflow: hidden;"><img src="https://images.unsplash.com/photo-1610880846497-7257b23f61ec?auto=format&fit=crop&w=800&q=80" alt="R35" class="car-img"></div>
-                    <div class="car-details">
-                        <h3>GT-R <span class="car-badge">R35</span></h3>
-                        <ul class="car-specs">
-                            <li><span>Year</span> <strong>2007 - Present</strong></li>
-                            <li><span>Engine</span> <strong>VR38DETT 3.8L TT</strong></li>
-                            <li><span>Power</span> <strong>565+ HP</strong></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="car-card blur-reveal">
-                    <div style="overflow: hidden;"><img src="https://images.unsplash.com/photo-1610464242610-d8ec76717544?auto=format&fit=crop&w=800&q=80" alt="S15" class="car-img"></div>
-                    <div class="car-details">
-                        <h3>Silvia <span class="car-badge">S15</span></h3>
-                        <ul class="car-specs">
-                            <li><span>Year</span> <strong>1999 - 2002</strong></li>
-                            <li><span>Engine</span> <strong>SR20DET 2.0L Turbo</strong></li>
-                            <li><span>Power</span> <strong>250 HP</strong></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="car-card blur-reveal">
-                    <div style="overflow: hidden;"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="370Z" class="car-img"></div>
-                    <div class="car-details">
-                        <h3>Fairlady Z <span class="car-badge">370Z</span></h3>
-                        <ul class="car-specs">
-                            <li><span>Year</span> <strong>2009 - 2020</strong></li>
-                            <li><span>Engine</span> <strong>VQ37VHR 3.7L V6</strong></li>
-                            <li><span>Power</span> <strong>332 HP</strong></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="car-card blur-reveal">
-                    <div style="overflow: hidden;"><img src="https://images.unsplash.com/photo-1620882813955-467389a42cb4?auto=format&fit=crop&w=800&q=80" alt="240SX" class="car-img"></div>
-                    <div class="car-details">
-                        <h3>240SX <span class="car-badge">S13/S14</span></h3>
-                        <ul class="car-specs">
-                            <li><span>Year</span> <strong>1989 - 1998</strong></li>
-                            <li><span>Engine</span> <strong>KA24DE 2.4L I4</strong></li>
-                            <li><span>Power</span> <strong>155 HP</strong></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="car-card blur-reveal">
-                    <div style="overflow: hidden;"><img src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?auto=format&fit=crop&w=800&q=80" alt="300ZX" class="car-img"></div>
-                    <div class="car-details">
-                        <h3>Fairlady Z <span class="car-badge">300ZX</span></h3>
-                        <ul class="car-specs">
-                            <li><span>Year</span> <strong>1989 - 2000</strong></li>
-                            <li><span>Engine</span> <strong>VG30DETT 3.0L TT</strong></li>
-                            <li><span>Power</span> <strong>300 HP</strong></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="car-card blur-reveal">
-                    <div style="overflow: hidden;"><img src="https://images.unsplash.com/photo-1681284562544-d8ed7cc60d3c?auto=format&fit=crop&w=800&q=80" alt="Nissan Z" class="car-img"></div>
-                    <div class="car-details">
-                        <h3>Nissan Z <span class="car-badge">RZ34</span></h3>
-                        <ul class="car-specs">
-                            <li><span>Year</span> <strong>2023 - Present</strong></li>
-                            <li><span>Engine</span> <strong>VR30DDTT 3.0L TT</strong></li>
-                            <li><span>Power</span> <strong>400 HP</strong></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="car-card blur-reveal">
-                    <div style="overflow: hidden;"><img src="https://images.unsplash.com/photo-1647854612301-9258908f51a7?auto=format&fit=crop&w=800&q=80" alt="Magnite" class="car-img"></div>
-                    <div class="car-details">
-                        <h3>Magnite <span class="car-badge">Compact</span></h3>
-                        <ul class="car-specs">
-                            <li><span>Year</span> <strong>2020 - Present</strong></li>
-                            <li><span>Engine</span> <strong>1.0L Turbo I3</strong></li>
-                            <li><span>Power</span> <strong>100 HP</strong></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
+    <section id="community" class="container fade-in">
+        <div class="discord-box">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--text-main);">Join The PvP Community</h2>
+            <p style="margin-bottom: 30px;">Find duel partners, join tournaments, and discuss meta strategies.</p>
+            <a href="#" class="pixel-btn" onclick="alert('Discord Invite Link Copied!')">Connect via Discord</a>
         </div>
-    </section>
 
-    <section id="stats">
-        <div class="container blur-reveal">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h2 class="counter" data-target="1000">0</h2>
-                    <p>Max HP (Tuned)</p>
-                </div>
-                <div class="stat-item">
-                    <h2 class="counter" data-target="315">0</h2>
-                    <p>Top Speed (km/h)</p>
-                </div>
-                <div class="stat-item">
-                    <h2 class="counter" data-target="90">0</h2>
-                    <p>Years of Heritage</p>
-                </div>
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-number counter" data-target="50000">0</div>
+                <div class="stat-label">Members</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number counter" data-target="1200">0</div>
+                <div class="stat-label">Active Players</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number counter" data-target="350">0</div>
+                <div class="stat-label">Tournaments</div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-divider"></div>
-        <div class="jp-text">日産自動車</div>
-        <div class="footer-content relative z-10">
-            <h2>NISSAN</h2>
-            <p>Innovation that excites. Engineered for the enthusiasts.</p>
-        </div>
+        <p>Built for the Minecraft PvP Community.</p>
+        <p style="font-size: 0.9rem; color: #555;">Not officially affiliated with Mojang AB.</p>
     </footer>
 
     <script>
-        // 1. PARTICLES GENERATOR
+        // 1. PIXEL PARTICLE GENERATOR (Hero Background)
         const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 40; i++) {
+        const particleCount = 40;
+
+        for (let i = 0; i < particleCount; i++) {
             let p = document.createElement('div');
-            p.classList.add('particle');
-            p.style.width = Math.random() * 5 + 2 + 'px';
-            p.style.height = p.style.width;
+            p.classList.add('pixel-particle');
+            
+            // Randomize position, size, and speed
             p.style.left = Math.random() * 100 + 'vw';
-            p.style.animationDelay = Math.random() * 5 + 's';
-            p.style.animationDuration = Math.random() * 3 + 3 + 's';
+            
+            // Random size between 4px and 16px (snapped to multiples of 4 for pixel look)
+            let size = Math.floor(Math.random() * 4 + 1) * 4;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            
+            p.style.animationDuration = (Math.random() * 5 + 3) + 's';
+            p.style.animationDelay = (Math.random() * 5) + 's';
+            
             particlesContainer.appendChild(p);
         }
 
-        // 2. INTERSECTION OBSERVER FOR MOTION BLUR & ANIMATIONS
+        // 2. SCROLL ANIMATIONS (Fade In)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
+                    entry.target.classList.add('visible');
                     
-                    // 3. TRIGGER COUNTERS WHEN VISIBLE
-                    if(entry.target.querySelector('.counter')) {
+                    // Trigger counters if they exist inside this section
+                    if (entry.target.querySelector('.counter')) {
                         const counters = entry.target.querySelectorAll('.counter');
                         counters.forEach(counter => {
                             const updateCount = () => {
                                 const target = +counter.getAttribute('data-target');
                                 const count = +counter.innerText;
-                                const inc = target / 50; // Speed of counting
+                                const inc = target / 50; 
 
                                 if (count < target) {
                                     counter.innerText = Math.ceil(count + inc);
@@ -477,15 +501,15 @@
                             };
                             updateCount();
                         });
-                        // Stop observing stats once counted
+                        // Stop observing once counted
                         observer.unobserve(entry.target);
                     }
                 }
             });
         }, { threshold: 0.15 });
 
-        // Apply observer to all blur-reveal elements
-        document.querySelectorAll('.blur-reveal').forEach(el => observer.observe(el));
+        // Apply observer to all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
