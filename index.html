@@ -3,70 +3,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Glassmorphism UI</title>
+<title>Glass UI Website</title>
 
 <style>
-
-/* ==UserStyle==
-@name YouTube Advanced Glassmorphism
-==/UserStyle== */
-
 :root {
-  --glass-blur: 20px;
-  --glass-radius: 12px;
-  --glass-bg: rgba(12,16,26,0.56);
-  --glass-bg-soft: rgba(18,23,34,0.45);
-  --glass-border: rgba(255,255,255,0.16);
-  --text-main: #f2f5ff;
+  --bg: #0b0f1a;
+  --glass: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.12);
+  --text: #eaf0ff;
   --accent: #8bb4ff;
 }
 
-/* Background */
-body {
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  color: var(--text-main);
-
-  background:
-    radial-gradient(1200px 900px at -12% -18%, rgba(139,180,255,0.14), transparent 60%),
-    linear-gradient(180deg, #090c15 0%, #07090f 100%);
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
 }
 
-/* Glass card */
-.glass {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--glass-radius);
-  backdrop-filter: blur(var(--glass-blur));
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(139,180,255,0.15), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(170,130,255,0.12), transparent 40%),
+    var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Glass container */
+.container {
+  width: 90%;
+  max-width: 900px;
+  padding: 40px;
+  border-radius: 16px;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+/* Title */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #aab4d6;
+  margin-bottom: 30px;
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 20px;
+}
+
+.card {
   padding: 20px;
-  margin: 40px auto;
-  width: 300px;
-  text-align: center;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(139,180,255,0.3);
 }
 
 /* Button */
 button {
-  background: var(--glass-bg-soft);
-  border: 1px solid var(--glass-border);
-  color: white;
+  margin-top: 20px;
   padding: 10px 20px;
   border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: black;
   cursor: pointer;
+  font-weight: bold;
 }
 
 button:hover {
-  box-shadow: 0 0 20px var(--accent);
+  opacity: 0.8;
 }
-
 </style>
+
 </head>
 
 <body>
 
-<div class="glass">
-  <h1>Glass UI 🔥</h1>
-  <p>This is now working correctly.</p>
-  <button>Click Me</button>
+<div class="container">
+  <h1>Glassmorphism UI 🔥</h1>
+  <p>Clean modern glass design working perfectly on your website.</p>
+
+  <div class="cards">
+    <div class="card">⚡ Fast</div>
+    <div class="card">🎨 Stylish</div>
+    <div class="card">🚀 Smooth</div>
+  </div>
+
+  <button>Explore</button>
 </div>
 
 </body>
