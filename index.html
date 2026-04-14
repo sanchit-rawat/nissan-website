@@ -3,175 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nissan GT-R</title>
+<title>Nissan Legacy</title>
 
 <style>
-body {
+/* RESET */
+* {
   margin: 0;
-  font-family: Arial;
-  background: black;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* THEME */
+body {
+  background: #0a0a0a;
   color: white;
+  transition: 0.4s;
+}
+
+body.light {
+  background: #f5f5f5;
+  color: #111;
 }
 
 /* NAV */
-.nav {
+nav {
+  position: fixed;
+  width: 100%;
+  padding: 15px 30px;
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-between;
-  padding: 15px 30px;
-  background: #111;
-  border-bottom: 1px solid red;
+  z-index: 1000;
 }
 
-.nav h2 { color: red; }
+.toggle {
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 20px;
+  background: red;
+  color: white;
+}
 
 /* HERO */
 .hero {
   height: 100vh;
-  background: url("https://images.unsplash.com/photo-1619767886558-efdc7b9b6c9e") center/cover no-repeat;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0,0,0,0.7);
-  background-blend-mode: darken;
+  flex-direction: column;
+  text-align: center;
+  background: linear-gradient(to right, #000, #111);
 }
 
 .hero h1 {
-  font-size: 60px;
-  color: red;
-  text-shadow: 0 0 20px red;
+  font-size: 3rem;
+  animation: fadeIn 2s ease;
 }
 
-.hero p { color: #ccc; }
-
-button {
+.hero button {
   margin-top: 20px;
-  padding: 12px 30px;
+  padding: 12px 25px;
   background: red;
   border: none;
   color: white;
+  border-radius: 30px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-button:hover {
+.hero button:hover {
+  transform: scale(1.1);
   box-shadow: 0 0 20px red;
 }
 
 /* SECTION */
-.section {
-  padding: 60px 20px;
+section {
+  padding: 80px 20px;
   text-align: center;
-}
-
-.section h2 {
-  color: red;
-  margin-bottom: 30px;
 }
 
 /* CARDS */
 .cards {
   display: flex;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .card {
-  background: #111;
-  border: 1px solid red;
-  margin: 15px;
-  padding: 25px;
-  width: 220px;
-  transition: 0.3s;
+  width: 250px;
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  transition: 0.4s;
 }
 
 .card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px red;
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 25px red;
 }
 
-/* PERFORMANCE */
-.bar {
-  width: 80%;
-  margin: 15px auto;
-  height: 8px;
-  background: #222;
-}
-
-.fill {
-  height: 100%;
-  background: red;
-}
-
-/* GALLERY */
-.gallery img {
-  width: 250px;
-  margin: 10px;
-  border: 2px solid red;
+.card img {
+  width: 100%;
+  border-radius: 10px;
 }
 
 /* FOOTER */
-.footer {
+footer {
+  padding: 20px;
   text-align: center;
-  padding: 30px;
-  border-top: 1px solid red;
-  color: #777;
+  opacity: 0.7;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 1s;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<div class="nav">
-  <h2>GT-R</h2>
-  <div>Home | Specs | Performance | Gallery</div>
-</div>
+<nav>
+  <h2>NISSAN</h2>
+  <div class="toggle" onclick="toggleTheme()">Theme</div>
+</nav>
 
-<!-- HERO -->
 <div class="hero">
-  <h1>Nissan GT-R</h1>
-  <p>Godzilla Performance Machine</p>
-  <button>Explore</button>
+  <h1>Precision. Power. Nissan.</h1>
+  <button onclick="playSound()">Explore</button>
 </div>
 
-<!-- SPECS -->
-<div class="section">
-  <h2>Specifications</h2>
+<section class="reveal">
+  <h2>Legacy</h2>
+  <p>Decades of innovation, speed, and engineering excellence.</p>
+</section>
+
+<section class="reveal">
+  <h2>Cars</h2>
   <div class="cards">
-    <div class="card">Engine: 3.8L Twin Turbo</div>
-    <div class="card">Power: 565 HP</div>
-    <div class="card">0-100: 2.9 sec</div>
-    <div class="card">Top Speed: 315 km/h</div>
+    <div class="card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Nissan_GT-R.jpg">
+      <h3>GT-R</h3>
+      <p>Legendary performance beast</p>
+    </div>
+
+    <div class="card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Nissan_370Z.jpg">
+      <h3>370Z</h3>
+      <p>Pure sports DNA</p>
+    </div>
+
+    <div class="card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Nissan_Magnite.jpg">
+      <h3>Magnite</h3>
+      <p>Compact SUV power</p>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- PERFORMANCE -->
-<div class="section">
-  <h2>Performance</h2>
+<footer>
+  <p>© 2026 Nissan Inspired Design</p>
+</footer>
 
-  <p>Acceleration</p>
-  <div class="bar"><div class="fill" style="width:90%"></div></div>
+<!-- SOUND -->
+<audio id="clickSound">
+  <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3">
+</audio>
 
-  <p>Handling</p>
-  <div class="bar"><div class="fill" style="width:85%"></div></div>
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("light");
+}
 
-  <p>Top Speed</p>
-  <div class="bar"><div class="fill" style="width:95%"></div></div>
-</div>
+function playSound() {
+  document.getElementById("clickSound").play();
+}
 
-<!-- GALLERY -->
-<div class="section">
-  <h2>Gallery</h2>
-  <div class="gallery">
-    <img src="https://images.unsplash.com/photo-1619767886558-efdc7b9b6c9e">
-    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
-  </div>
-</div>
+/* SCROLL ANIMATION */
+window.addEventListener("scroll", () => {
+  let reveals = document.querySelectorAll(".reveal");
 
-<!-- FOOTER -->
-<div class="footer">
-  Nissan GT-R | Built for speed 🔥
-</div>
+  reveals.forEach(el => {
+    let windowHeight = window.innerHeight;
+    let elementTop = el.getBoundingClientRect().top;
+
+    if (elementTop < windowHeight - 100) {
+      el.classList.add("active");
+    }
+  });
+});
+</script>
 
 </body>
 </html>
