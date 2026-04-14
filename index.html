@@ -1,18 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nissan GT-R</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial;
-  color: white;
   background: black;
+  color: white;
 }
 
-/* HERO WITH IMAGE */
+/* NAV */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: #111;
+  border-bottom: 1px solid red;
+}
+
+.nav h2 { color: red; }
+
+/* HERO */
 .hero {
   height: 100vh;
   background: url("https://images.unsplash.com/photo-1619767886558-efdc7b9b6c9e") center/cover no-repeat;
@@ -20,8 +32,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-blend-mode: darken;
   background-color: rgba(0,0,0,0.7);
+  background-blend-mode: darken;
 }
 
 .hero h1 {
@@ -30,9 +42,7 @@ body {
   text-shadow: 0 0 20px red;
 }
 
-.hero p {
-  color: #ccc;
-}
+.hero p { color: #ccc; }
 
 button {
   margin-top: 20px;
@@ -41,7 +51,6 @@ button {
   border: none;
   color: white;
   cursor: pointer;
-  font-size: 16px;
 }
 
 button:hover {
@@ -56,6 +65,7 @@ button:hover {
 
 .section h2 {
   color: red;
+  margin-bottom: 30px;
 }
 
 /* CARDS */
@@ -78,28 +88,89 @@ button:hover {
   transform: scale(1.05);
   box-shadow: 0 0 20px red;
 }
-</style>
 
+/* PERFORMANCE */
+.bar {
+  width: 80%;
+  margin: 15px auto;
+  height: 8px;
+  background: #222;
+}
+
+.fill {
+  height: 100%;
+  background: red;
+}
+
+/* GALLERY */
+.gallery img {
+  width: 250px;
+  margin: 10px;
+  border: 2px solid red;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 30px;
+  border-top: 1px solid red;
+  color: #777;
+}
+</style>
 </head>
 
 <body>
 
+<!-- NAV -->
+<div class="nav">
+  <h2>GT-R</h2>
+  <div>Home | Specs | Performance | Gallery</div>
+</div>
+
+<!-- HERO -->
 <div class="hero">
   <h1>Nissan GT-R</h1>
-  <p>Godzilla Machine</p>
+  <p>Godzilla Performance Machine</p>
   <button>Explore</button>
 </div>
 
+<!-- SPECS -->
 <div class="section">
   <h2>Specifications</h2>
-
   <div class="cards">
     <div class="card">Engine: 3.8L Twin Turbo</div>
     <div class="card">Power: 565 HP</div>
     <div class="card">0-100: 2.9 sec</div>
     <div class="card">Top Speed: 315 km/h</div>
   </div>
+</div>
 
+<!-- PERFORMANCE -->
+<div class="section">
+  <h2>Performance</h2>
+
+  <p>Acceleration</p>
+  <div class="bar"><div class="fill" style="width:90%"></div></div>
+
+  <p>Handling</p>
+  <div class="bar"><div class="fill" style="width:85%"></div></div>
+
+  <p>Top Speed</p>
+  <div class="bar"><div class="fill" style="width:95%"></div></div>
+</div>
+
+<!-- GALLERY -->
+<div class="section">
+  <h2>Gallery</h2>
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1619767886558-efdc7b9b6c9e">
+    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  Nissan GT-R | Built for speed 🔥
 </div>
 
 </body>
