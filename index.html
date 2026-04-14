@@ -1,206 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glassmorphism UI</title>
+
+<style>
+
 /* ==UserStyle==
-@name           YouTube Advanced Glassmorphism (Refined)
-@namespace      codex.nissan.website
-@version        1.1.0
-@description    Premium frosted glass UI for youtube.com
-@author         GPT
+@name YouTube Advanced Glassmorphism
 ==/UserStyle== */
 
-@-moz-document domain("youtube.com") {
-
-  /* ───────── VARIABLES ───────── */
-  :root {
-    --blur: 20px;
-    --radius: 12px;
-
-    --bg-main: rgba(12,16,26,0.56);
-    --bg-soft: rgba(18,23,34,0.45);
-    --bg-strong: rgba(10,13,21,0.68);
-
-    --border: rgba(255,255,255,0.16);
-    --border-soft: rgba(255,255,255,0.08);
-
-    --text-main: #f2f5ff;
-    --text-dim: #a6b0cb;
-
-    --accent: #8bb4ff;
-
-    --glow:
-      0 0 0 1px rgba(139,180,255,0.25),
-      0 0 24px rgba(139,180,255,0.32);
-
-    --shadow: 0 10px 28px rgba(0,0,0,0.42);
-    --anim: 260ms cubic-bezier(0.22,1,0.36,1);
-  }
-
-  /* ───────── BASE RESET ───────── */
-  html, body, * {
-    font-family: "Manrope","Inter","Segoe UI",sans-serif !important;
-    color: var(--text-main);
-    transition:
-      background var(--anim),
-      border var(--anim),
-      box-shadow var(--anim),
-      transform var(--anim),
-      color var(--anim),
-      opacity var(--anim);
-  }
-
-  html, body,
-  ytd-app, #content, #page-manager,
-  #columns, #primary, #secondary, #chat {
-    background: transparent !important;
-  }
-
-  body {
-    background:
-      radial-gradient(1200px 900px at -12% -18%, rgba(139,180,255,0.14), transparent 60%),
-      radial-gradient(900px 760px at 115% 6%, rgba(170,130,255,0.12), transparent 56%),
-      linear-gradient(180deg, #090c15 0%, #07090f 100%) !important;
-  }
-
-  /* ───────── GLASS CORE ───────── */
-  #masthead-container,
-  #guide-content,
-  ytd-mini-guide-renderer,
-  ytd-rich-item-renderer,
-  ytd-grid-video-renderer,
-  ytd-video-renderer,
-  ytd-compact-video-renderer,
-  ytd-playlist-renderer,
-  ytd-watch-flexy #primary-inner,
-  ytd-watch-flexy #secondary-inner,
-  ytd-comments,
-  ytd-item-section-renderer,
-  ytd-comment-thread-renderer,
-  ytd-live-chat-frame,
-  #chips-wrapper,
-  yt-chip-cloud-renderer,
-  ytd-searchbox,
-  #container.ytd-two-column-browse-results-renderer,
-  ytd-popup-container tp-yt-paper-dialog,
-  ytd-menu-popup-renderer,
-  tp-yt-paper-listbox,
-  ytd-guide-entry-renderer,
-  ytd-rich-section-renderer,
-  ytd-engagement-panel-section-list-renderer,
-  ytd-watch-metadata {
-
-    background: var(--bg-main) !important;
-    border: 1px solid var(--border-soft) !important;
-    border-radius: var(--radius) !important;
-
-    backdrop-filter: blur(var(--blur)) saturate(1.25);
-    -webkit-backdrop-filter: blur(var(--blur)) saturate(1.25);
-
-    box-shadow: var(--shadow);
-  }
-
-  /* ───────── REMOVE DEFAULT BACKGROUNDS ───────── */
-  #background,
-  #guide-scrim,
-  tp-yt-app-drawer,
-  ytd-popup-container,
-  .ytp-gradient-top,
-  .ytp-gradient-bottom {
-    background: transparent !important;
-  }
-
-  /* ───────── INPUTS & SEARCH ───────── */
-  input,
-  textarea,
-  #contenteditable-root,
-  #search,
-  #container.ytd-searchbox,
-  yt-chip-cloud-chip-renderer {
-
-    background: var(--bg-soft) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: var(--radius) !important;
-    color: var(--text-main) !important;
-  }
-
-  /* ───────── PLAYER UI ───────── */
-  .html5-video-player .ytp-chrome-bottom,
-  .html5-video-player .ytp-chrome-top,
-  .ytp-tooltip,
-  .ytp-popup {
-
-    background: rgba(7,10,18,0.52) !important;
-    backdrop-filter: blur(16px);
-    border-radius: 10px !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
-  }
-
-  /* ───────── CARDS ───────── */
-  ytd-rich-item-renderer,
-  ytd-video-renderer,
-  ytd-grid-video-renderer,
-  ytd-compact-video-renderer {
-
-    overflow: hidden;
-    transform: translateZ(0);
-  }
-
-  /* ───────── HOVER EFFECT ───────── */
-  a:hover,
-  button:hover,
-  ytd-video-renderer:hover,
-  ytd-grid-video-renderer:hover {
-
-    box-shadow: var(--glow) !important;
-    border-color: rgba(139,180,255,0.45) !important;
-    transform: translateY(-2px) scale(1.01);
-  }
-
-  /* ───────── TEXT ───────── */
-  yt-formatted-string,
-  #video-title,
-  #title {
-    color: var(--text-main) !important;
-  }
-
-  #metadata-line,
-  #byline {
-    color: var(--text-dim) !important;
-  }
-
-  /* ───────── SCROLLBAR ───────── */
-  *::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  *::-webkit-scrollbar-thumb {
-    background: rgba(139,180,255,0.4);
-    border-radius: 12px;
-  }
-
-  /* ───────── BUTTONS ───────── */
-  button,
-  tp-yt-paper-button {
-
-    background: var(--bg-soft) !important;
-    border: 1px solid var(--border-soft) !important;
-    border-radius: var(--radius) !important;
-  }
-
-  /* ───────── TOPBAR ───────── */
-  #masthead-container {
-    background: var(--bg-strong) !important;
-    border-bottom: 1px solid var(--border) !important;
-  }
-
-  /* ───────── ACCESSIBILITY ───────── */
-  :focus-visible {
-    outline: 2px solid rgba(139,180,255,0.6);
-    outline-offset: 2px;
-  }
-
-  /* ───────── REDUCED MOTION ───────── */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      transition: none !important;
-    }
-  }
-
+:root {
+  --glass-blur: 20px;
+  --glass-radius: 12px;
+  --glass-bg: rgba(12,16,26,0.56);
+  --glass-bg-soft: rgba(18,23,34,0.45);
+  --glass-border: rgba(255,255,255,0.16);
+  --text-main: #f2f5ff;
+  --accent: #8bb4ff;
 }
+
+/* Background */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--text-main);
+
+  background:
+    radial-gradient(1200px 900px at -12% -18%, rgba(139,180,255,0.14), transparent 60%),
+    linear-gradient(180deg, #090c15 0%, #07090f 100%);
+}
+
+/* Glass card */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--glass-radius);
+  backdrop-filter: blur(var(--glass-blur));
+  padding: 20px;
+  margin: 40px auto;
+  width: 300px;
+  text-align: center;
+}
+
+/* Button */
+button {
+  background: var(--glass-bg-soft);
+  border: 1px solid var(--glass-border);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 0 0 20px var(--accent);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glass">
+  <h1>Glass UI 🔥</h1>
+  <p>This is now working correctly.</p>
+  <button>Click Me</button>
+</div>
+
+</body>
+</html>
