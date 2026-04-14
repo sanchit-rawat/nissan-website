@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Glass UI</title>
+<title>Nissan GT-R</title>
 
 <style>
 :root {
-  --bg: #0b0f1a;
-  --glass: rgba(255,255,255,0.05);
-  --border: rgba(255,255,255,0.12);
-  --text: #eaf0ff;
-  --accent: #8bb4ff;
+  --bg: #050505;
+  --glass: rgba(255, 0, 0, 0.05);
+  --border: rgba(255, 0, 0, 0.25);
+  --text: #ffffff;
+  --accent: #ff1e3c;
+  --glow: rgba(255, 30, 60, 0.6);
 }
 
 * {
@@ -22,7 +23,10 @@
 }
 
 body {
-  background: linear-gradient(180deg,#05070d,#0b0f1a);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255,0,0,0.15), transparent 40%),
+    radial-gradient(circle at 80% 100%, rgba(255,0,0,0.1), transparent 40%),
+    var(--bg);
   color: var(--text);
 }
 
@@ -31,9 +35,13 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 20px 40px;
+  border-bottom: 1px solid var(--border);
 }
 
-.nav h2 { color: var(--accent); }
+.nav h2 {
+  color: var(--accent);
+  letter-spacing: 2px;
+}
 
 /* HERO */
 .hero {
@@ -44,25 +52,46 @@ body {
 }
 
 .glass {
-  padding: 40px;
-  border-radius: 16px;
+  padding: 50px;
+  border-radius: 18px;
   background: var(--glass);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(25px);
   border: 1px solid var(--border);
   text-align: center;
+  box-shadow: 0 0 40px rgba(255,0,0,0.2);
 }
 
 .glass h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
+  letter-spacing: 2px;
 }
 
-.glass button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border-radius: 10px;
+.glass span {
+  color: var(--accent);
+  text-shadow: 0 0 20px var(--glow);
+}
+
+.glass p {
+  color: #aaa;
+  margin-top: 10px;
+}
+
+/* BUTTON */
+button {
+  margin-top: 25px;
+  padding: 12px 25px;
+  border-radius: 12px;
   border: none;
   background: var(--accent);
+  color: white;
+  font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  box-shadow: 0 0 25px var(--glow);
+  transform: scale(1.05);
 }
 
 /* SECTION */
@@ -70,24 +99,54 @@ body {
   padding: 80px 40px;
 }
 
+.section h2 {
+  margin-bottom: 30px;
+  color: var(--accent);
+}
+
+/* CARDS */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
   gap: 20px;
 }
 
 .card {
-  padding: 20px;
-  border-radius: 12px;
+  padding: 25px;
+  border-radius: 14px;
   background: var(--glass);
   border: 1px solid var(--border);
   transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 20px rgba(139,180,255,0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px var(--glow);
 }
+
+/* PERFORMANCE BAR */
+.bar {
+  height: 6px;
+  background: #111;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.fill {
+  height: 100%;
+  background: linear-gradient(90deg, red, var(--accent));
+  width: 80%;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 30px;
+  border-top: 1px solid var(--border);
+  color: #666;
+}
+
 </style>
 </head>
 
@@ -95,27 +154,47 @@ body {
 
 <!-- NAVBAR -->
 <div class="nav">
-  <h2>GlassUI</h2>
-  <p>Home | About | Contact</p>
+  <h2>GT-R</h2>
+  <p>Specs | Performance | History</p>
 </div>
 
 <!-- HERO -->
 <div class="hero">
   <div class="glass">
-    <h1>Glass UI 🔥</h1>
-    <p>Now it looks like a real website</p>
+    <h1>Nissan <span>GT-R</span></h1>
+    <p>Godzilla Performance Machine</p>
     <button>Explore</button>
   </div>
 </div>
 
-<!-- FEATURES -->
+<!-- SPECS -->
 <div class="section">
-  <h2>Features</h2>
+  <h2>Specifications</h2>
   <div class="cards">
-    <div class="card">⚡ Fast</div>
-    <div class="card">🎨 Stylish</div>
-    <div class="card">🚀 Smooth</div>
+    <div class="card">⚙ Engine: 3.8L Twin Turbo</div>
+    <div class="card">🔥 Power: 565 HP</div>
+    <div class="card">⚡ 0–100: 2.9s</div>
+    <div class="card">🚀 Top Speed: 315 km/h</div>
   </div>
+</div>
+
+<!-- PERFORMANCE -->
+<div class="section">
+  <h2>Performance</h2>
+
+  <p>Acceleration</p>
+  <div class="bar"><div class="fill" style="width:90%"></div></div>
+
+  <p>Handling</p>
+  <div class="bar"><div class="fill" style="width:85%"></div></div>
+
+  <p>Top Speed</p>
+  <div class="bar"><div class="fill" style="width:95%"></div></div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  Built for speed ⚡
 </div>
 
 </body>
