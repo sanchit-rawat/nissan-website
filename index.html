@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Glass UI Website</title>
+<title>Glass UI</title>
 
 <style>
 :root {
   --bg: #0b0f1a;
-  --glass: rgba(255,255,255,0.06);
+  --glass: rgba(255,255,255,0.05);
   --border: rgba(255,255,255,0.12);
   --text: #eaf0ff;
   --accent: #8bb4ff;
@@ -22,41 +22,54 @@
 }
 
 body {
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(139,180,255,0.15), transparent 40%),
-    radial-gradient(circle at bottom right, rgba(170,130,255,0.12), transparent 40%),
-    var(--bg);
+  background: linear-gradient(180deg,#05070d,#0b0f1a);
   color: var(--text);
+}
+
+/* NAVBAR */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.nav h2 { color: var(--accent); }
+
+/* HERO */
+.hero {
+  height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Glass container */
-.container {
-  width: 90%;
-  max-width: 900px;
+.glass {
   padding: 40px;
   border-radius: 16px;
   background: var(--glass);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  text-align: center;
 }
 
-/* Title */
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+.glass h1 {
+  font-size: 3rem;
 }
 
-p {
-  color: #aab4d6;
-  margin-bottom: 30px;
+.glass button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  cursor: pointer;
 }
 
-/* Cards */
+/* SECTION */
+.section {
+  padding: 80px 40px;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
@@ -66,7 +79,7 @@ p {
 .card {
   padding: 20px;
   border-radius: 12px;
-  background: rgba(255,255,255,0.04);
+  background: var(--glass);
   border: 1px solid var(--border);
   transition: 0.3s;
 }
@@ -75,39 +88,34 @@ p {
   transform: translateY(-5px);
   box-shadow: 0 0 20px rgba(139,180,255,0.3);
 }
-
-/* Button */
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  background: var(--accent);
-  color: black;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-button:hover {
-  opacity: 0.8;
-}
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
-  <h1>Glassmorphism UI 🔥</h1>
-  <p>Clean modern glass design working perfectly on your website.</p>
+<!-- NAVBAR -->
+<div class="nav">
+  <h2>GlassUI</h2>
+  <p>Home | About | Contact</p>
+</div>
 
+<!-- HERO -->
+<div class="hero">
+  <div class="glass">
+    <h1>Glass UI 🔥</h1>
+    <p>Now it looks like a real website</p>
+    <button>Explore</button>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="section">
+  <h2>Features</h2>
   <div class="cards">
     <div class="card">⚡ Fast</div>
     <div class="card">🎨 Stylish</div>
     <div class="card">🚀 Smooth</div>
   </div>
-
-  <button>Explore</button>
 </div>
 
 </body>
