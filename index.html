@@ -1,1 +1,319 @@
-youtube-glassmorphism.theme.css
+/* ==UserStyle==
+@name           YouTube Advanced Glassmorphism (Discord Frosted Inspired)
+@namespace      codex.nissan.website
+@version        1.0.0
+@description    Full premium dark glass UI for youtube.com
+@author         GPT-5.3-Codex
+==/UserStyle== */
+
+@-moz-document domain("youtube.com") {
+  :root {
+    --glass-blur: 20px;
+    --glass-radius: 12px;
+    --glass-bg: rgba(12, 16, 26, 0.56);
+    --glass-bg-soft: rgba(18, 23, 34, 0.45);
+    --glass-bg-strong: rgba(10, 13, 21, 0.68);
+    --glass-border: rgba(255, 255, 255, 0.16);
+    --glass-border-soft: rgba(255, 255, 255, 0.08);
+    --text-main: #f2f5ff;
+    --text-dim: #a6b0cb;
+    --accent: #8bb4ff;
+    --glow: 0 0 0 1px rgba(139, 180, 255, 0.25), 0 0 24px rgba(139, 180, 255, 0.32);
+    --shadow: 0 10px 28px rgba(0, 0, 0, 0.42);
+    --anim: 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html,
+  body,
+  ytd-app,
+  #content,
+  #page-manager,
+  #columns,
+  #primary,
+  #secondary,
+  #chat {
+    background: transparent !important;
+  }
+
+  html,
+  body,
+  * {
+    font-family: "Manrope", "Inter", "Segoe UI", system-ui, sans-serif !important;
+    color: var(--text-main);
+    transition:
+      background-color var(--anim),
+      border-color var(--anim),
+      box-shadow var(--anim),
+      transform var(--anim),
+      color var(--anim),
+      opacity var(--anim);
+  }
+
+  body {
+    background:
+      radial-gradient(1200px 900px at -12% -18%, rgba(139, 180, 255, 0.14), transparent 60%),
+      radial-gradient(900px 760px at 115% 6%, rgba(170, 130, 255, 0.12), transparent 56%),
+      linear-gradient(180deg, #090c15 0%, #07090f 100%) !important;
+    min-height: 100vh;
+    color: var(--text-main);
+  }
+
+  /* Core glass shells */
+  #masthead-container,
+  #guide-content,
+  ytd-mini-guide-renderer,
+  ytd-rich-item-renderer,
+  ytd-grid-video-renderer,
+  ytd-video-renderer,
+  ytd-compact-video-renderer,
+  ytd-playlist-renderer,
+  ytd-watch-flexy #primary-inner,
+  ytd-watch-flexy #secondary-inner,
+  ytd-comments,
+  ytd-item-section-renderer,
+  ytd-comment-thread-renderer,
+  ytd-live-chat-frame,
+  #chips-wrapper,
+  yt-chip-cloud-renderer,
+  ytd-searchbox,
+  #content.ytd-rich-grid-renderer,
+  #container.ytd-two-column-browse-results-renderer,
+  ytd-notification-topbar-button-renderer,
+  ytd-popup-container tp-yt-paper-dialog,
+  ytd-menu-popup-renderer,
+  tp-yt-paper-listbox,
+  ytd-guide-entry-renderer,
+  ytd-rich-section-renderer,
+  ytd-merch-shelf-renderer,
+  ytd-engagement-panel-section-list-renderer,
+  ytd-metadata,
+  ytd-watch-metadata,
+  #meta,
+  #above-the-fold,
+  #below,
+  #info,
+  #actions,
+  #owner,
+  #subscribe-button,
+  #tabsContent {
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border-soft) !important;
+    border-radius: var(--glass-radius) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.25);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.25);
+    box-shadow: var(--shadow);
+  }
+
+  /* Transparent layers cleanup */
+  #background,
+  #background.ytd-masthead,
+  #frosted-glass,
+  #guide-scrim,
+  tp-yt-app-drawer,
+  ytd-popup-container,
+  .ytd-popup-container,
+  #container.ytd-masthead,
+  #guide-inner-content,
+  #header,
+  .sbdd_a,
+  .ytp-gradient-top,
+  .ytp-gradient-bottom {
+    background: transparent !important;
+  }
+
+  /* Search & chips */
+  #search-input.ytd-searchbox-spt input,
+  #search,
+  #container.ytd-searchbox,
+  yt-chip-cloud-chip-renderer,
+  #endpoint.ytd-guide-entry-renderer,
+  #endpoint.ytd-mini-guide-entry-renderer {
+    background: var(--glass-bg-soft) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 12px !important;
+    color: var(--text-main) !important;
+  }
+
+  /* Video player controls */
+  .html5-video-player .ytp-chrome-bottom,
+  .html5-video-player .ytp-chrome-top,
+  .ytp-tooltip,
+  .ytp-popup {
+    background: rgba(7, 10, 18, 0.52) !important;
+    backdrop-filter: blur(16px) saturate(1.2);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px !important;
+  }
+
+  /* Premium cards */
+  ytd-rich-item-renderer,
+  ytd-grid-video-renderer,
+  ytd-video-renderer,
+  ytd-compact-video-renderer,
+  ytd-playlist-renderer,
+  ytd-comment-thread-renderer,
+  ytd-reel-item-renderer,
+  ytd-rich-section-renderer {
+    overflow: hidden;
+    transform: translateZ(0);
+  }
+
+  /* Hover glow effect */
+  a:hover,
+  button:hover,
+  ytd-rich-item-renderer:hover,
+  ytd-video-renderer:hover,
+  ytd-grid-video-renderer:hover,
+  ytd-compact-video-renderer:hover,
+  ytd-guide-entry-renderer:hover,
+  yt-chip-cloud-chip-renderer:hover,
+  tp-yt-paper-item:hover,
+  #dismissible:hover {
+    box-shadow: var(--glow) !important;
+    border-color: rgba(139, 180, 255, 0.45) !important;
+  }
+
+  ytd-rich-item-renderer:hover,
+  ytd-video-renderer:hover,
+  ytd-grid-video-renderer:hover,
+  ytd-compact-video-renderer:hover,
+  #dismissible:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  /* Text hierarchy */
+  yt-formatted-string,
+  #video-title,
+  #title,
+  #text,
+  #content-text,
+  #description,
+  #byline,
+  #owner-name,
+  #channel-name,
+  #subscriber-count,
+  .style-scope.ytd-video-meta-block,
+  #metadata-line {
+    color: var(--text-main) !important;
+  }
+
+  #metadata-line,
+  .metadata-snippet-text,
+  .ytd-video-meta-block,
+  #subtitle,
+  #published-time-text,
+  #info-strings,
+  #vote-count-middle,
+  #reply-button-end,
+  #author-text {
+    color: var(--text-dim) !important;
+  }
+
+  /* Scrollbars */
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgba(139, 180, 255, 0.35);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    background-clip: content-box;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 180, 255, 0.62);
+    background-clip: content-box;
+  }
+
+  /* Buttons */
+  button,
+  tp-yt-paper-button,
+  yt-button-shape button,
+  ytd-toggle-button-renderer {
+    border-radius: 12px !important;
+    border: 1px solid var(--glass-border-soft) !important;
+    background: var(--glass-bg-soft) !important;
+  }
+
+  button:hover,
+  tp-yt-paper-button:hover,
+  yt-button-shape button:hover {
+    background: rgba(22, 29, 44, 0.7) !important;
+  }
+
+  /* Inputs */
+  input,
+  textarea,
+  #contenteditable-root {
+    background: rgba(11, 15, 26, 0.45) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 12px !important;
+    color: var(--text-main) !important;
+  }
+
+  /* Keep thumbnails crisp while frame stays glass */
+  ytd-thumbnail,
+  ytd-playlist-thumbnail,
+  #thumbnail,
+  #img {
+    border-radius: 12px !important;
+    overflow: hidden;
+  }
+
+  ytd-thumbnail img,
+  #thumbnail img,
+  yt-image img {
+    filter: saturate(1.03) contrast(1.04);
+  }
+
+  /* Topbar emphasis */
+  #masthead-container {
+    background: var(--glass-bg-strong) !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+  }
+
+  /* Sidebar polish */
+  ytd-guide-section-renderer {
+    margin: 8px 6px !important;
+    padding: 6px !important;
+    border-radius: 12px !important;
+    background: rgba(14, 18, 29, 0.38) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  }
+
+  /* Reduce visual clutter */
+  #country-code,
+  #dot,
+  .badge-style-type-verified,
+  ytd-display-ad-renderer,
+  ytd-statement-banner-renderer {
+    opacity: 0.85;
+  }
+
+  /* Focus states for accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid rgba(139, 180, 255, 0.6) !important;
+    outline-offset: 2px;
+  }
+
+  /* Motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+}
