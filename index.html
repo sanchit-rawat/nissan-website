@@ -3,50 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Windows 11 Experience</title>
+
+  <title>Markas Pharma</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+
     *{
       margin:0;
       padding:0;
       box-sizing:border-box;
       font-family:'Inter',sans-serif;
+      scroll-behavior:smooth;
     }
 
     :root{
-      --bg:#f3f7ff;
-      --card:rgba(255,255,255,0.25);
+
+      --bg:#eef4ff;
       --text:#111827;
-      --sub:#5b6475;
-      --border:rgba(255,255,255,0.4);
+      --sub:#5e6472;
+
+      --glass:rgba(255,255,255,0.22);
+      --border:rgba(255,255,255,0.35);
+
       --shadow:rgba(31,38,135,0.18);
-      --glow:#6ea8ff;
+
+      --blue:#1794ff;
+      --red:#e52d2d;
+
     }
 
     body.dark{
-      --bg:#060816;
-      --card:rgba(14,17,31,0.45);
+
+      --bg:#050816;
       --text:#ffffff;
-      --sub:#b6bdd0;
+      --sub:#c7d0e0;
+
+      --glass:rgba(15,18,35,0.45);
       --border:rgba(255,255,255,0.08);
+
       --shadow:rgba(0,0,0,0.5);
-      --glow:#5ea0ff;
+
     }
 
     body{
+
       background:var(--bg);
       color:var(--text);
-      min-height:100vh;
       overflow-x:hidden;
       transition:0.5s ease;
-      position:relative;
+      min-height:100vh;
+
     }
 
-    /* Animated Background */
+    /* Background */
 
     .bg{
       position:fixed;
@@ -61,410 +75,610 @@
       height:500px;
       border-radius:50%;
       filter:blur(120px);
-      opacity:0.55;
-      animation:float 12s infinite ease-in-out alternate;
+      opacity:0.45;
+      animation:float 10s infinite alternate ease-in-out;
     }
 
     .blob1{
-      background:#4f8cff;
+      background:#1da1ff;
       top:-100px;
       left:-100px;
     }
 
     .blob2{
-      background:#8b5cf6;
-      bottom:-150px;
+      background:#ff4d4d;
       right:-100px;
+      bottom:-100px;
       animation-delay:2s;
     }
 
     .blob3{
-      background:#00d4ff;
+      background:#5f7cff;
       top:40%;
-      left:50%;
-      transform:translate(-50%,-50%);
+      left:45%;
       animation-delay:4s;
     }
 
     @keyframes float{
+
       0%{
         transform:translateY(0px) scale(1);
       }
+
       100%{
         transform:translateY(-40px) scale(1.1);
       }
+
     }
 
     /* Navbar */
 
     nav{
+
       width:100%;
       padding:22px 8%;
       display:flex;
       justify-content:space-between;
       align-items:center;
+
       position:sticky;
       top:0;
       z-index:100;
+
       backdrop-filter:blur(20px);
-      background:rgba(255,255,255,0.08);
-      border-bottom:1px solid rgba(255,255,255,0.12);
+      background:rgba(255,255,255,0.05);
+
+      border-bottom:1px solid rgba(255,255,255,0.08);
+
     }
 
     .logo{
-      font-size:1.4rem;
-      font-weight:700;
-      letter-spacing:1px;
-    }
 
-    .nav-right{
       display:flex;
       align-items:center;
-      gap:18px;
+      gap:14px;
+
+    }
+
+    .logo img{
+
+      width:52px;
+      height:52px;
+      border-radius:16px;
+
+    }
+
+    .logo h2{
+
+      font-size:1.3rem;
+      font-weight:700;
+
     }
 
     .theme-btn{
-      width:50px;
-      height:50px;
+
+      width:52px;
+      height:52px;
+
       border:none;
       border-radius:18px;
-      background:var(--card);
-      backdrop-filter:blur(18px);
-      cursor:pointer;
+
+      background:var(--glass);
+
+      backdrop-filter:blur(20px);
+
       color:var(--text);
-      font-size:1.2rem;
-      transition:0.35s ease;
+      font-size:1.1rem;
+
+      cursor:pointer;
+
       border:1px solid var(--border);
-      box-shadow:0 8px 32px var(--shadow);
+
+      transition:0.35s ease;
+
+      box-shadow:0 8px 25px var(--shadow);
+
     }
 
     .theme-btn:hover{
+
       transform:translateY(-4px) scale(1.05);
+
     }
 
     /* Hero */
 
     .hero{
+
       min-height:100vh;
+
       display:flex;
       align-items:center;
       justify-content:center;
+
       padding:80px 8%;
-      position:relative;
+
     }
 
-    .glass-card{
+    .hero-card{
+
       width:100%;
-      max-width:1200px;
-      padding:60px;
-      border-radius:40px;
-      background:var(--card);
+      max-width:1300px;
+
+      padding:70px;
+
+      border-radius:42px;
+
+      background:var(--glass);
+
       backdrop-filter:blur(28px);
+
       border:1px solid var(--border);
-      box-shadow:0 8px 40px var(--shadow);
+
+      box-shadow:0 10px 40px var(--shadow);
+
       display:grid;
       grid-template-columns:1fr 1fr;
+
       gap:60px;
+
       animation:fadeUp 1s ease;
+
     }
 
     @keyframes fadeUp{
+
       from{
         opacity:0;
         transform:translateY(40px);
       }
+
       to{
         opacity:1;
         transform:translateY(0px);
       }
+
     }
 
     .hero-text h1{
-      font-size:4rem;
-      line-height:1.1;
-      margin-bottom:25px;
-      font-weight:700;
+
+      font-size:4.4rem;
+      line-height:1.05;
+      margin-bottom:24px;
+
+      font-weight:800;
+
     }
 
     .gradient{
-      background:linear-gradient(90deg,#4f8cff,#8b5cf6,#00d4ff);
+
+      background:linear-gradient(90deg,#1794ff,#ff4d4d);
+
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
+
     }
 
     .hero-text p{
+
       color:var(--sub);
-      font-size:1.1rem;
+
       line-height:1.8;
+      font-size:1.08rem;
+
       margin-bottom:35px;
+
     }
 
     .buttons{
+
       display:flex;
       gap:20px;
       flex-wrap:wrap;
+
     }
 
     .btn{
+
       padding:16px 28px;
+
       border:none;
       border-radius:18px;
+
       cursor:pointer;
-      font-size:1rem;
-      transition:0.35s ease;
+
       font-weight:600;
+      font-size:1rem;
+
+      transition:0.35s ease;
+
     }
 
     .primary{
-      background:linear-gradient(135deg,#4f8cff,#8b5cf6);
+
+      background:linear-gradient(135deg,#1794ff,#ff4d4d);
+
       color:white;
-      box-shadow:0 10px 30px rgba(79,140,255,0.4);
+
+      box-shadow:0 10px 30px rgba(23,148,255,0.35);
+
     }
 
     .secondary{
-      background:var(--card);
+
+      background:var(--glass);
+
       color:var(--text);
+
       border:1px solid var(--border);
+
       backdrop-filter:blur(20px);
+
     }
 
     .btn:hover{
+
       transform:translateY(-5px) scale(1.03);
+
     }
 
-    /* Windows mockup */
+    /* Hero Image */
 
-    .mockup{
+    .hero-visual{
+
       display:flex;
       justify-content:center;
       align-items:center;
+
       position:relative;
+
     }
 
-    .window{
+    .hero-window{
+
       width:100%;
-      max-width:500px;
-      height:340px;
-      border-radius:28px;
-      background:rgba(255,255,255,0.12);
-      backdrop-filter:blur(30px);
-      border:1px solid rgba(255,255,255,0.2);
-      overflow:hidden;
-      box-shadow:0 20px 60px rgba(0,0,0,0.3);
-      transform:rotate(-4deg);
-      transition:0.5s ease;
-      animation:floatWindow 4s ease-in-out infinite;
-    }
+      max-width:480px;
 
-    .window:hover{
-      transform:rotate(0deg) scale(1.03);
-    }
-
-    @keyframes floatWindow{
-      0%{
-        transform:translateY(0px) rotate(-4deg);
-      }
-      50%{
-        transform:translateY(-12px) rotate(-2deg);
-      }
-      100%{
-        transform:translateY(0px) rotate(-4deg);
-      }
-    }
-
-    .window-top{
-      height:55px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:0 20px;
-      background:rgba(255,255,255,0.08);
-      border-bottom:1px solid rgba(255,255,255,0.08);
-    }
-
-    .dot{
-      width:12px;
-      height:12px;
-      border-radius:50%;
-    }
-
-    .red{background:#ff5f57;}
-    .yellow{background:#ffbd2e;}
-    .green{background:#28c840;}
-
-    .window-content{
       padding:25px;
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:20px;
-    }
 
-    .mini-card{
-      height:100px;
-      border-radius:22px;
+      border-radius:34px;
+
       background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.1);
-      backdrop-filter:blur(20px);
-      transition:0.35s ease;
+
+      border:1px solid rgba(255,255,255,0.12);
+
+      backdrop-filter:blur(30px);
+
+      box-shadow:0 20px 50px rgba(0,0,0,0.3);
+
+      animation:floating 5s infinite ease-in-out;
+
+      transform:rotate(-3deg);
+
+      transition:0.5s ease;
+
     }
 
-    .mini-card:hover{
-      transform:translateY(-8px);
-      box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    .hero-window:hover{
+
+      transform:rotate(0deg) scale(1.03);
+
+    }
+
+    @keyframes floating{
+
+      0%{
+        transform:translateY(0px) rotate(-3deg);
+      }
+
+      50%{
+        transform:translateY(-10px) rotate(-1deg);
+      }
+
+      100%{
+        transform:translateY(0px) rotate(-3deg);
+      }
+
+    }
+
+    .hero-window img{
+
+      width:100%;
+      border-radius:24px;
+
+    }
+
+    /* Products */
+
+    .products{
+
+      padding:120px 8%;
+
+    }
+
+    .section-title{
+
+      text-align:center;
+      margin-bottom:60px;
+
+    }
+
+    .section-title h2{
+
+      font-size:3rem;
+      margin-bottom:14px;
+
+    }
+
+    .section-title p{
+
+      color:var(--sub);
+
+    }
+
+    .product-grid{
+
+      display:grid;
+
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+      gap:35px;
+
+    }
+
+    .product-card{
+
+      padding:24px;
+
+      border-radius:32px;
+
+      background:var(--glass);
+
+      backdrop-filter:blur(24px);
+
+      border:1px solid var(--border);
+
+      box-shadow:0 10px 35px var(--shadow);
+
+      transition:0.45s ease;
+
+      overflow:hidden;
+
+      position:relative;
+
+    }
+
+    .product-card:hover{
+
+      transform:translateY(-12px) scale(1.02);
+
+    }
+
+    .product-card img{
+
+      width:100%;
+      height:260px;
+
+      object-fit:cover;
+
+      border-radius:22px;
+
+      margin-bottom:22px;
+
+      transition:0.4s ease;
+
+    }
+
+    .product-card:hover img{
+
+      transform:scale(1.05);
+
+    }
+
+    .product-card h3{
+
+      font-size:1.35rem;
+      margin-bottom:12px;
+
+    }
+
+    .product-card p{
+
+      color:var(--sub);
+      line-height:1.7;
+
     }
 
     /* Features */
 
     .features{
-      padding:100px 8%;
-    }
 
-    .section-title{
-      text-align:center;
-      margin-bottom:60px;
-    }
+      padding:40px 8% 120px;
 
-    .section-title h2{
-      font-size:3rem;
-      margin-bottom:15px;
-    }
-
-    .section-title p{
-      color:var(--sub);
     }
 
     .feature-grid{
+
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
       gap:30px;
+
     }
 
     .feature-card{
+
       padding:35px;
+
       border-radius:30px;
-      background:var(--card);
-      backdrop-filter:blur(25px);
+
+      background:var(--glass);
+
       border:1px solid var(--border);
+
+      backdrop-filter:blur(22px);
+
       box-shadow:0 10px 30px var(--shadow);
+
       transition:0.4s ease;
+
     }
 
     .feature-card:hover{
-      transform:translateY(-10px) scale(1.02);
+
+      transform:translateY(-10px);
+
+    }
+
+    .feature-card .icon{
+
+      font-size:2.2rem;
+      margin-bottom:18px;
+
     }
 
     .feature-card h3{
-      margin:18px 0 12px;
-      font-size:1.4rem;
+
+      margin-bottom:12px;
+
     }
 
     .feature-card p{
+
       color:var(--sub);
       line-height:1.7;
-    }
 
-    .icon{
-      font-size:2rem;
     }
-
-    /* Footer */
 
     footer{
+
       text-align:center;
+
       padding:40px;
+
       color:var(--sub);
+
     }
 
     /* Responsive */
 
-    @media(max-width:980px){
+    @media(max-width:1000px){
 
-      .glass-card{
+      .hero-card{
+
         grid-template-columns:1fr;
         text-align:center;
+
       }
 
       .buttons{
+
         justify-content:center;
+
       }
 
       .hero-text h1{
-        font-size:3rem;
+
+        font-size:3.3rem;
+
       }
+
     }
 
     @media(max-width:600px){
 
-      .glass-card{
+      .hero-card{
+
         padding:35px;
+
       }
 
       .hero-text h1{
+
         font-size:2.4rem;
+
       }
 
       .section-title h2{
-        font-size:2.2rem;
+
+        font-size:2.1rem;
+
       }
+
     }
 
   </style>
+
 </head>
 
 <body>
 
+  <!-- Background -->
+
   <div class="bg">
+
     <div class="blob blob1"></div>
     <div class="blob blob2"></div>
     <div class="blob blob3"></div>
+
   </div>
 
-  <nav>
-    <div class="logo">Windows 11</div>
+  <!-- Navbar -->
 
-    <div class="nav-right">
-      <button class="theme-btn" id="themeToggle">🌙</button>
+  <nav>
+
+    <div class="logo">
+
+      <img src="logo.png" alt="Markas Pharma Logo">
+
+      <h2>Markas Pharma</h2>
+
     </div>
+
+    <button class="theme-btn" id="themeToggle">🌙</button>
+
   </nav>
+
+  <!-- Hero -->
 
   <section class="hero">
 
-    <div class="glass-card">
+    <div class="hero-card">
 
       <div class="hero-text">
+
         <h1>
-          Experience the
-          <span class="gradient">Future UI</span>
+
+          Advanced
+          <span class="gradient">Healthcare</span>
+          Solutions
+
         </h1>
 
         <p>
-          A sleek Windows 11 inspired website with glossy glassmorphism,
-          motion blur, smooth transitions, dark mode, light mode and
-          ultra modern animations.
+
+          Markas Pharma delivers premium pharmaceutical and wellness
+          products with modern innovation, trusted healthcare solutions,
+          and quality manufacturing for a healthier tomorrow.
+
         </p>
 
         <div class="buttons">
-          <button class="btn primary">Explore</button>
-          <button class="btn secondary">Learn More</button>
+
+          <button class="btn primary">Explore Products</button>
+
+          <button class="btn secondary">About Company</button>
+
         </div>
+
       </div>
 
-      <div class="mockup">
+      <div class="hero-visual">
 
-        <div class="window">
+        <div class="hero-window">
 
-          <div class="window-top">
-            <div class="dot red"></div>
-            <div class="dot yellow"></div>
-            <div class="dot green"></div>
-          </div>
-
-          <div class="window-content">
-            <div class="mini-card"></div>
-            <div class="mini-card"></div>
-            <div class="mini-card"></div>
-            <div class="mini-card"></div>
-          </div>
+          <img src="medicine1.jpg" alt="Medicine Product">
 
         </div>
 
@@ -474,46 +688,141 @@
 
   </section>
 
+  <!-- Products -->
+
+  <section class="products">
+
+    <div class="section-title">
+
+      <h2>Our Products</h2>
+
+      <p>Premium healthcare and wellness range.</p>
+
+    </div>
+
+    <div class="product-grid">
+
+      <div class="product-card">
+
+        <img src="medicine1.jpg" alt="Medicine">
+
+        <h3>MAK-DSR</h3>
+
+        <p>
+
+          Pharmaceutical capsule packaging designed with modern
+          healthcare standards and trusted quality assurance.
+
+        </p>
+
+      </div>
+
+      <div class="product-card">
+
+        <img src="medicine2.jpg" alt="Syrup">
+
+        <h3>Markfit Syrup</h3>
+
+        <p>
+
+          Lycopene with multivitamins and minerals syrup
+          supporting wellness and daily nutrition.
+
+        </p>
+
+      </div>
+
+      <div class="product-card">
+
+        <img src="medicine3.jpg" alt="Energy Drink Powder">
+
+        <h3>Markfit-D</h3>
+
+        <p>
+
+          Instant energy drink powder enriched with vitamins,
+          electrolytes and minerals for active lifestyles.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Features -->
+
   <section class="features">
 
     <div class="section-title">
-      <h2>Modern Features</h2>
-      <p>Clean, aesthetic and premium looking interface.</p>
+
+      <h2>Why Choose Us</h2>
+
+      <p>Modern pharma company with trusted quality.</p>
+
     </div>
 
     <div class="feature-grid">
 
       <div class="feature-card">
-        <div class="icon">✨</div>
-        <h3>Glassy Design</h3>
+
+        <div class="icon">💊</div>
+
+        <h3>Quality Medicines</h3>
+
         <p>
-          Beautiful blur effects with glossy glassmorphism UI inspired
-          by Windows 11.
+
+          Carefully manufactured pharmaceutical products with
+          advanced healthcare standards.
+
         </p>
+
       </div>
 
       <div class="feature-card">
-        <div class="icon">🌙</div>
-        <h3>Dark & Light Mode</h3>
-        <p>
-          Smooth animated theme switching with minimal aesthetic colors.
-        </p>
-      </div>
 
-      <div class="feature-card">
         <div class="icon">⚡</div>
-        <h3>Motion Animations</h3>
+
+        <h3>Modern Innovation</h3>
+
         <p>
-          Ultra smooth hover animations, floating cards and transitions.
+
+          Futuristic healthcare solutions powered by innovation
+          and trusted expertise.
+
         </p>
+
       </div>
 
       <div class="feature-card">
-        <div class="icon">💎</div>
-        <h3>Premium Feel</h3>
+
+        <div class="icon">🧪</div>
+
+        <h3>Research Driven</h3>
+
         <p>
-          Modern rounded corners, glossy shadows and futuristic effects.
+
+          Combining science and technology to create better
+          wellness products.
+
         </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <div class="icon">🌍</div>
+
+        <h3>Trusted Healthcare</h3>
+
+        <p>
+
+          Delivering reliable products for healthier communities
+          and better lifestyles.
+
+        </p>
+
       </div>
 
     </div>
@@ -521,8 +830,12 @@
   </section>
 
   <footer>
-    Designed with ❤️ inspired by Windows 11 UI
+
+    © 2025 Markas Pharma — Premium Healthcare Experience
+
   </footer>
+
+  <!-- Script -->
 
   <script>
 
@@ -533,24 +846,15 @@
       document.body.classList.toggle("dark");
 
       if(document.body.classList.contains("dark")){
+
         toggle.innerHTML = "☀️";
+
       } else {
+
         toggle.innerHTML = "🌙";
+
       }
 
-    });
-
-    // Smooth scroll animation
-
-    document.querySelectorAll("button").forEach(btn => {
-      btn.addEventListener("mousemove", e => {
-
-        const x = e.offsetX;
-        const y = e.offsetY;
-
-        btn.style.backgroundPosition = `${x}px ${y}px`;
-
-      });
     });
 
   </script>
