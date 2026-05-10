@@ -1071,24 +1071,44 @@ Chat With Our Team
 <h2>Business Inquiry</h2>
 
 <p>
-Request product details or support.
+Request product details, support,
+or healthcare partnership information.
 </p>
 
 </div>
 
 <div class="card">
 
-<form>
+<form action="https://formspree.io/f/mgodpyby" method="POST">
 
-<input type="text" placeholder="Your Name">
+<input 
+type="text" 
+name="name" 
+placeholder="Your Name" 
+required
+>
 
-<input type="email" placeholder="Your Email">
+<input 
+type="email" 
+name="email" 
+placeholder="Your Email Address" 
+required
+>
 
-<input type="text" placeholder="Phone Number">
+<input 
+type="text" 
+name="phone" 
+placeholder="Phone Number" 
+required
+>
 
-<textarea placeholder="Your Message"></textarea>
+<textarea 
+name="message" 
+placeholder="Write your inquiry here..."
+required
+></textarea>
 
-<button class="btn primary">
+<button type="submit" class="btn primary">
 
 Send Inquiry
 
@@ -1099,7 +1119,7 @@ Send Inquiry
 </div>
 
 </section>
-
+  
 <!-- Disclaimer -->
 
 <section>
