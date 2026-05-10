@@ -1,7 +1,3 @@
-<!-- =========================
-MARKAS PHARMA PREMIUM WEBSITE
-========================= -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +7,13 @@ MARKAS PHARMA PREMIUM WEBSITE
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Markas Pharma</title>
+
+<meta name="description" content="Markas Pharma provides trusted pharmaceutical and healthcare products with modern innovation and customer support.">
+
+<meta name="keywords" content="Markas Pharma, pharma company, healthcare, medicines, wellness">
+
+<meta property="og:title" content="Markas Pharma">
+<meta property="og:description" content="Trusted healthcare and pharmaceutical solutions.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,9 +75,89 @@ min-height:100vh;
 
 }
 
-a{
-text-decoration:none;
-color:inherit;
+/* Loader */
+
+.loader{
+
+position:fixed;
+inset:0;
+
+background:#050816;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+z-index:99999;
+
+transition:1s ease;
+
+}
+
+.loader-logo{
+
+font-size:2.5rem;
+font-weight:800;
+
+background:linear-gradient(90deg,#1794ff,#ff4d4d);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+animation:loaderAnim 1.5s infinite alternate;
+
+}
+
+@keyframes loaderAnim{
+
+0%{
+transform:scale(1);
+opacity:0.7;
+}
+
+100%{
+transform:scale(1.1);
+opacity:1;
+}
+
+}
+
+/* Progress Bar */
+
+#progressBar{
+
+position:fixed;
+top:0;
+left:0;
+
+height:5px;
+width:0%;
+
+background:linear-gradient(90deg,#1794ff,#ff4d4d);
+
+z-index:9999;
+
+}
+
+/* Cursor Glow */
+
+.cursor-glow{
+
+position:fixed;
+
+width:300px;
+height:300px;
+
+background:radial-gradient(circle,rgba(23,148,255,0.18),transparent 70%);
+
+border-radius:50%;
+
+pointer-events:none;
+
+transform:translate(-50%,-50%);
+
+z-index:-1;
+
 }
 
 /* Background */
@@ -84,7 +167,7 @@ color:inherit;
 position:fixed;
 inset:0;
 
-z-index:-1;
+z-index:-2;
 
 overflow:hidden;
 
@@ -191,8 +274,6 @@ height:55px;
 
 border-radius:18px;
 
-object-fit:cover;
-
 background:white;
 
 padding:5px;
@@ -227,8 +308,6 @@ font-size:1.1rem;
 cursor:pointer;
 
 transition:0.35s ease;
-
-box-shadow:0 8px 25px var(--shadow);
 
 }
 
@@ -275,22 +354,6 @@ grid-template-columns:1fr 1fr;
 
 gap:60px;
 
-animation:fadeUp 1s ease;
-
-}
-
-@keyframes fadeUp{
-
-from{
-opacity:0;
-transform:translateY(40px);
-}
-
-to{
-opacity:1;
-transform:translateY(0px);
-}
-
 }
 
 .hero-text h1{
@@ -310,7 +373,6 @@ font-weight:800;
 background:linear-gradient(90deg,#1794ff,#ff4d4d);
 
 -webkit-background-clip:text;
-
 -webkit-text-fill-color:transparent;
 
 }
@@ -331,7 +393,6 @@ margin-bottom:35px;
 
 display:flex;
 gap:20px;
-
 flex-wrap:wrap;
 
 }
@@ -359,19 +420,15 @@ background:linear-gradient(135deg,#1794ff,#ff4d4d);
 
 color:white;
 
-box-shadow:0 10px 30px rgba(23,148,255,0.35);
-
 }
 
 .secondary{
 
 background:var(--glass);
 
-color:var(--text);
-
 border:1px solid var(--border);
 
-backdrop-filter:blur(20px);
+color:var(--text);
 
 }
 
@@ -387,20 +444,7 @@ transform:scale(0.96);
 
 }
 
-/* Hero Image */
-
-.hero-visual{
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-}
-
 .hero-window{
-
-width:100%;
-max-width:500px;
 
 padding:25px;
 
@@ -412,35 +456,7 @@ border:1px solid rgba(255,255,255,0.12);
 
 backdrop-filter:blur(30px);
 
-box-shadow:0 20px 50px rgba(0,0,0,0.3);
-
-transform:rotate(-3deg);
-
 animation:floating 5s infinite ease-in-out;
-
-transition:0.5s ease;
-
-}
-
-.hero-window:hover{
-
-transform:rotate(0deg) scale(1.03);
-
-}
-
-@keyframes floating{
-
-0%{
-transform:translateY(0px) rotate(-3deg);
-}
-
-50%{
-transform:translateY(-10px) rotate(-1deg);
-}
-
-100%{
-transform:translateY(0px) rotate(-3deg);
-}
 
 }
 
@@ -448,6 +464,22 @@ transform:translateY(0px) rotate(-3deg);
 
 width:100%;
 border-radius:24px;
+
+}
+
+@keyframes floating{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0px);
+}
 
 }
 
@@ -491,7 +523,8 @@ gap:35px;
 
 }
 
-.card{
+.card,
+.stat-card{
 
 padding:24px;
 
@@ -511,7 +544,8 @@ overflow:hidden;
 
 }
 
-.card:hover{
+.card:hover,
+.stat-card:hover{
 
 transform:translateY(-12px) scale(1.02);
 
@@ -532,15 +566,13 @@ transition:0.4s ease;
 
 }
 
-.card:hover img{
+.card img:hover{
 
 transform:scale(1.05);
 
 }
 
 .card h3{
-
-font-size:1.35rem;
 
 margin-bottom:12px;
 
@@ -556,9 +588,8 @@ line-height:1.8;
 
 .icon{
 
-font-size:2.2rem;
-
-margin-bottom:18px;
+font-size:2rem;
+margin-bottom:15px;
 
 }
 
@@ -576,27 +607,7 @@ gap:25px;
 
 .stat-card{
 
-padding:35px;
-
-border-radius:30px;
-
 text-align:center;
-
-background:var(--glass);
-
-border:1px solid var(--border);
-
-backdrop-filter:blur(22px);
-
-box-shadow:0 10px 30px var(--shadow);
-
-transition:0.4s ease;
-
-}
-
-.stat-card:hover{
-
-transform:translateY(-10px);
 
 }
 
@@ -604,19 +615,10 @@ transform:translateY(-10px);
 
 font-size:2.5rem;
 
-margin-bottom:10px;
-
 background:linear-gradient(90deg,#1794ff,#ff4d4d);
 
 -webkit-background-clip:text;
-
 -webkit-text-fill-color:transparent;
-
-}
-
-.stat-card p{
-
-color:var(--sub);
 
 }
 
@@ -644,10 +646,6 @@ background:rgba(255,255,255,0.08);
 
 border:1px solid rgba(255,255,255,0.12);
 
-backdrop-filter:blur(18px);
-
--webkit-backdrop-filter:blur(18px);
-
 color:var(--text);
 
 font-size:1rem;
@@ -656,25 +654,16 @@ outline:none;
 
 transition:0.35s ease;
 
-width:100%;
-
-}
-
-input::placeholder,
-textarea::placeholder{
-
-color:var(--sub);
-
 }
 
 input:focus,
 textarea:focus{
 
-transform:scale(1.01);
-
 border:1px solid #1794ff;
 
 box-shadow:0 0 20px rgba(23,148,255,0.25);
+
+transform:scale(1.01);
 
 }
 
@@ -686,7 +675,55 @@ resize:none;
 
 }
 
-/* Footer */
+/* WhatsApp */
+
+.whatsapp-float{
+
+position:fixed;
+
+right:25px;
+bottom:25px;
+
+width:65px;
+height:65px;
+
+border-radius:50%;
+
+background:linear-gradient(135deg,#25D366,#1ebe5d);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:2rem;
+
+color:white;
+
+text-decoration:none;
+
+box-shadow:0 10px 30px rgba(37,211,102,0.4);
+
+z-index:999;
+
+animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{
+box-shadow:0 0 0 0 rgba(37,211,102,0.5);
+}
+
+70%{
+box-shadow:0 0 0 18px rgba(37,211,102,0);
+}
+
+100%{
+box-shadow:0 0 0 0 rgba(37,211,102,0);
+}
+
+}
 
 footer{
 
@@ -698,13 +735,17 @@ color:var(--sub);
 
 }
 
-/* Responsive */
+/* Mobile */
 
 @media(max-width:1000px){
 
 .hero-card{
 
 grid-template-columns:1fr;
+
+}
+
+.hero-text{
 
 text-align:center;
 
@@ -718,7 +759,7 @@ justify-content:center;
 
 .hero-text h1{
 
-font-size:3.3rem;
+font-size:3rem;
 
 }
 
@@ -726,21 +767,15 @@ font-size:3.3rem;
 
 @media(max-width:600px){
 
-.hero-card{
-
-padding:35px;
-
-}
-
 .hero-text h1{
 
-font-size:2.4rem;
+font-size:2.3rem;
 
 }
 
 .section-title h2{
 
-font-size:2.2rem;
+font-size:2rem;
 
 }
 
@@ -751,6 +786,24 @@ font-size:2.2rem;
 </head>
 
 <body>
+
+<!-- Loader -->
+
+<div class="loader" id="loader">
+
+<div class="loader-logo">
+Markas Pharma
+</div>
+
+</div>
+
+<!-- Progress -->
+
+<div id="progressBar"></div>
+
+<!-- Cursor Glow -->
+
+<div class="cursor-glow"></div>
 
 <!-- Background -->
 
@@ -774,7 +827,9 @@ font-size:2.2rem;
 
 </div>
 
-<button class="theme-btn" id="themeToggle">🌙</button>
+<button class="theme-btn" id="themeToggle">
+🌙
+</button>
 
 </nav>
 
@@ -798,8 +853,7 @@ Solutions
 
 Markas Pharma delivers trusted pharmaceutical
 and wellness products with innovation,
-modern healthcare standards, research-driven
-development, and quality manufacturing.
+research-driven development, and quality support.
 
 </p>
 
@@ -817,17 +871,19 @@ About Company
 </button>
 </a>
 
-</div>
+<a href="catalogue.pdf" download>
+<button class="btn secondary">
+Download Catalogue
+</button>
+</a>
 
 </div>
 
-<div class="hero-visual">
+</div>
 
 <div class="hero-window">
 
 <img src="https://5.imimg.com/data5/WA_9696/Default/2025/8/539053728/WN/BK/LQ/77944832/image-500x500.jpeg">
-
-</div>
 
 </div>
 
@@ -843,9 +899,7 @@ About Company
 
 <h2>Our Products</h2>
 
-<p>
-Premium healthcare and wellness products.
-</p>
+<p>Premium healthcare and wellness products.</p>
 
 </div>
 
@@ -858,8 +912,7 @@ Premium healthcare and wellness products.
 <h3>MAK-DSR</h3>
 
 <p>
-Advanced pharmaceutical capsule designed
-for trusted healthcare support.
+Advanced pharmaceutical capsule designed for healthcare support.
 </p>
 
 </div>
@@ -871,8 +924,7 @@ for trusted healthcare support.
 <h3>Markfit Syrup</h3>
 
 <p>
-Lycopene with vitamins and minerals
-for wellness and immunity support.
+Lycopene with vitamins and minerals for wellness support.
 </p>
 
 </div>
@@ -884,8 +936,7 @@ for wellness and immunity support.
 <h3>Markfit-D</h3>
 
 <p>
-Instant energy drink powder with
-vitamins and electrolytes.
+Instant energy drink powder with vitamins and electrolytes.
 </p>
 
 </div>
@@ -902,9 +953,7 @@ vitamins and electrolytes.
 
 <h2>Why Choose Us</h2>
 
-<p>
-Trusted healthcare with modern innovation.
-</p>
+<p>Trusted healthcare with modern innovation.</p>
 
 </div>
 
@@ -917,8 +966,7 @@ Trusted healthcare with modern innovation.
 <h3>Premium Quality</h3>
 
 <p>
-Manufactured with trusted pharmaceutical
-standards and quality assurance.
+Manufactured with trusted pharmaceutical standards.
 </p>
 
 </div>
@@ -930,8 +978,7 @@ standards and quality assurance.
 <h3>Modern Innovation</h3>
 
 <p>
-Combining technology and healthcare
-for advanced wellness solutions.
+Advanced wellness and healthcare solutions.
 </p>
 
 </div>
@@ -943,8 +990,7 @@ for advanced wellness solutions.
 <h3>Research Driven</h3>
 
 <p>
-Science-backed formulations designed
-for better healthcare support.
+Science-backed healthcare development.
 </p>
 
 </div>
@@ -956,8 +1002,7 @@ for better healthcare support.
 <h3>Trusted Support</h3>
 
 <p>
-Providing trusted healthcare solutions
-for customers and communities.
+Reliable support for customers and businesses.
 </p>
 
 </div>
@@ -974,9 +1019,7 @@ for customers and communities.
 
 <h2>Our Achievements</h2>
 
-<p>
-Growing trust through healthcare excellence.
-</p>
+<p>Growing trust through healthcare excellence.</p>
 
 </div>
 
@@ -984,33 +1027,115 @@ Growing trust through healthcare excellence.
 
 <div class="stat-card">
 
-<h2>50+</h2>
+<h2 class="counter" data-target="50">0</h2>
 
-<p>Successful Orders Delivered</p>
-
-</div>
-
-<div class="stat-card">
-
-<h2>100%</h2>
-
-<p>Customer Support Assistance</p>
+<p>Successful Orders</p>
 
 </div>
 
 <div class="stat-card">
 
-<h2>24/7</h2>
+<h2 class="counter" data-target="100">0</h2>
 
-<p>Business Inquiry Support</p>
+<p>Customer Support</p>
 
 </div>
 
 <div class="stat-card">
 
-<h2>GST</h2>
+<h2 class="counter" data-target="24">0</h2>
 
-<p>Registered Business Operations</p>
+<p>Business Assistance</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Testimonials -->
+
+<section>
+
+<div class="section-title">
+
+<h2>What Clients Say</h2>
+
+<p>Trusted by customers and healthcare partners.</p>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<p>
+“Reliable support and trusted pharmaceutical products.”
+</p>
+
+</div>
+
+<div class="card">
+
+<p>
+“Professional communication and quality healthcare support.”
+</p>
+
+</div>
+
+<div class="card">
+
+<p>
+“Modern solutions with responsive support team.”
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FAQ -->
+
+<section>
+
+<div class="section-title">
+
+<h2>Frequently Asked Questions</h2>
+
+<p>Common questions about Markas Pharma.</p>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Do you support bulk orders?</h3>
+
+<p>
+Yes, we provide support for bulk and business inquiries.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>How can I contact support?</h3>
+
+<p>
+Through WhatsApp, phone, email, and inquiry form.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Do you operate offline?</h3>
+
+<p>
+Yes, Markas Pharma also supports offline operations.
+</p>
 
 </div>
 
@@ -1026,10 +1151,7 @@ Growing trust through healthcare excellence.
 
 <h2>Contact Us</h2>
 
-<p>
-For product inquiries, support,
-and business partnerships.
-</p>
+<p>For support and business inquiries.</p>
 
 </div>
 
@@ -1037,9 +1159,7 @@ and business partnerships.
 
 <div class="card">
 
-<div class="icon">📞</div>
-
-<h3>Phone Number</h3>
+<h3>Phone</h3>
 
 <p>
 <a href="tel:9311531440">
@@ -1051,9 +1171,7 @@ and business partnerships.
 
 <div class="card">
 
-<div class="icon">✉️</div>
-
-<h3>Email Address</h3>
+<h3>Email</h3>
 
 <p>
 <a href="mailto:shankurawat2506@gmail.com">
@@ -1065,13 +1183,11 @@ shankurawat2506@gmail.com
 
 <div class="card">
 
-<div class="icon">💬</div>
-
-<h3>WhatsApp Support</h3>
+<h3>WhatsApp</h3>
 
 <p>
 <a href="https://wa.me/919311531440">
-Chat With Our Team
+Chat With Us
 </a>
 </p>
 
@@ -1081,7 +1197,7 @@ Chat With Our Team
 
 </section>
 
-<!-- Inquiry Form -->
+<!-- Form -->
 
 <section>
 
@@ -1089,10 +1205,7 @@ Chat With Our Team
 
 <h2>Business Inquiry</h2>
 
-<p>
-Request product details, support,
-or healthcare partnership information.
-</p>
+<p>Request product and support details.</p>
 
 </div>
 
@@ -1100,37 +1213,16 @@ or healthcare partnership information.
 
 <form action="https://formspree.io/f/mgodpyby" method="POST">
 
-<input 
-type="text" 
-name="name" 
-placeholder="Your Name" 
-required
->
+<input type="text" name="name" placeholder="Your Name" required>
 
-<input 
-type="email" 
-name="email" 
-placeholder="Your Email Address" 
-required
->
+<input type="email" name="email" placeholder="Your Email" required>
 
-<input 
-type="text" 
-name="phone" 
-placeholder="Phone Number" 
-required
->
+<input type="text" name="phone" placeholder="Phone Number" required>
 
-<textarea 
-name="message" 
-placeholder="Write your inquiry here..."
-required
-></textarea>
+<textarea name="message" placeholder="Write your inquiry..." required></textarea>
 
 <button type="submit" class="btn primary">
-
 Send Inquiry
-
 </button>
 
 </form>
@@ -1139,27 +1231,30 @@ Send Inquiry
 
 </section>
 
-<!-- Disclaimer -->
+<!-- Map -->
 
 <section>
 
+<div class="section-title">
+
+<h2>Our Location</h2>
+
+<p>Find us through Google Maps.</p>
+
+</div>
+
 <div class="card">
 
-<h3>Compliance & Disclaimer</h3>
+<iframe 
 
-<p>
+src="https://maps.google.com/maps?q=Delhi&t=&z=13&ie=UTF8&iwloc=&output=embed"
 
-Markas Pharma operates with registered
-business compliance and pharmaceutical
-licensing standards.
+width="100%"
+height="400"
+style="border:0;border-radius:24px;"
+loading="lazy">
 
-Products are supplied in accordance
-with applicable pharmaceutical regulations.
-
-Please consult healthcare professionals
-before use.
-
-</p>
+</iframe>
 
 </div>
 
@@ -1181,42 +1276,118 @@ Delhi, India
 
 </footer>
 
-<!-- Script -->
+<!-- WhatsApp -->
+
+<a href="https://wa.me/919311531440" class="whatsapp-float">
+💬
+</a>
+
+<!-- Scripts -->
 
 <script>
 
-const toggle = document.getElementById("themeToggle");
+/* Theme */
 
-toggle.addEventListener("click", () => {
+const toggle=document.getElementById("themeToggle");
+
+toggle.addEventListener("click",()=>{
 
 document.body.classList.toggle("dark");
 
 if(document.body.classList.contains("dark")){
 
-toggle.innerHTML = "☀️";
+toggle.innerHTML="☀️";
 
-}
+}else{
 
-else{
-
-toggle.innerHTML = "🌙";
+toggle.innerHTML="🌙";
 
 }
 
 });
 
-/* Scroll Reveal Animation */
+/* Loader */
 
-const cards = document.querySelectorAll('.card, .stat-card');
+window.addEventListener('load',()=>{
 
-const observer = new IntersectionObserver((entries)=>{
+setTimeout(()=>{
+
+document.getElementById('loader').style.opacity='0';
+document.getElementById('loader').style.visibility='hidden';
+
+},1500);
+
+});
+
+/* Progress Bar */
+
+window.addEventListener('scroll',()=>{
+
+const scrollTop=document.documentElement.scrollTop;
+
+const scrollHeight=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+
+const progress=(scrollTop/scrollHeight)*100;
+
+document.getElementById('progressBar').style.width=progress+"%";
+
+});
+
+/* Cursor Glow */
+
+const glow=document.querySelector('.cursor-glow');
+
+window.addEventListener('mousemove',(e)=>{
+
+glow.style.left=e.clientX+'px';
+glow.style.top=e.clientY+'px';
+
+});
+
+/* Counter */
+
+const counters=document.querySelectorAll('.counter');
+
+counters.forEach(counter=>{
+
+const updateCounter=()=>{
+
+const target=+counter.getAttribute('data-target');
+
+const count=+counter.innerText;
+
+const increment=target/80;
+
+if(count<target){
+
+counter.innerText=Math.ceil(count+increment);
+
+setTimeout(updateCounter,30);
+
+}else{
+
+counter.innerText=target+"+";
+
+}
+
+}
+
+updateCounter();
+
+});
+
+/* Scroll Animation */
+
+const cards=document.querySelectorAll('.card,.stat-card');
+
+const observer=new IntersectionObserver((entries)=>{
 
 entries.forEach((entry)=>{
 
 if(entry.isIntersecting){
 
-entry.target.style.opacity = "1";
-entry.target.style.transform = "translateY(0px)";
+entry.target.style.opacity="1";
+entry.target.style.transform="translateY(0px)";
 
 }
 
@@ -1226,9 +1397,9 @@ entry.target.style.transform = "translateY(0px)";
 
 cards.forEach((card)=>{
 
-card.style.opacity = "0";
-card.style.transform = "translateY(40px)";
-card.style.transition = "0.8s ease";
+card.style.opacity="0";
+card.style.transform="translateY(40px)";
+card.style.transition="0.8s ease";
 
 observer.observe(card);
 
