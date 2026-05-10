@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Markas Pharma</title>
+
+  <!-- Google Font -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +37,7 @@
       --shadow:rgba(31,38,135,0.18);
 
       --blue:#1794ff;
-      --red:#e52d2d;
+      --red:#ff3b3b;
 
     }
 
@@ -80,20 +84,20 @@
     }
 
     .blob1{
-      background:#1da1ff;
+      background:#1794ff;
       top:-100px;
       left:-100px;
     }
 
     .blob2{
       background:#ff4d4d;
+      bottom:-120px;
       right:-100px;
-      bottom:-100px;
       animation-delay:2s;
     }
 
     .blob3{
-      background:#5f7cff;
+      background:#6d5eff;
       top:40%;
       left:45%;
       animation-delay:4s;
@@ -116,7 +120,8 @@
     nav{
 
       width:100%;
-      padding:22px 8%;
+      padding:20px 8%;
+
       display:flex;
       justify-content:space-between;
       align-items:center;
@@ -126,6 +131,7 @@
       z-index:100;
 
       backdrop-filter:blur(20px);
+
       background:rgba(255,255,255,0.05);
 
       border-bottom:1px solid rgba(255,255,255,0.08);
@@ -142,15 +148,16 @@
 
     .logo img{
 
-      width:52px;
-      height:52px;
-      border-radius:16px;
+      width:55px;
+      height:55px;
+
+      border-radius:18px;
 
     }
 
     .logo h2{
 
-      font-size:1.3rem;
+      font-size:1.4rem;
       font-weight:700;
 
     }
@@ -167,12 +174,13 @@
 
       backdrop-filter:blur(20px);
 
+      border:1px solid var(--border);
+
       color:var(--text);
+
       font-size:1.1rem;
 
       cursor:pointer;
-
-      border:1px solid var(--border);
 
       transition:0.35s ease;
 
@@ -193,8 +201,8 @@
       min-height:100vh;
 
       display:flex;
-      align-items:center;
       justify-content:center;
+      align-items:center;
 
       padding:80px 8%;
 
@@ -211,7 +219,7 @@
 
       background:var(--glass);
 
-      backdrop-filter:blur(28px);
+      backdrop-filter:blur(30px);
 
       border:1px solid var(--border);
 
@@ -242,8 +250,9 @@
 
     .hero-text h1{
 
-      font-size:4.4rem;
+      font-size:4.5rem;
       line-height:1.05;
+
       margin-bottom:24px;
 
       font-weight:800;
@@ -264,6 +273,7 @@
       color:var(--sub);
 
       line-height:1.8;
+
       font-size:1.08rem;
 
       margin-bottom:35px;
@@ -280,15 +290,15 @@
 
     .btn{
 
-      padding:16px 28px;
+      padding:16px 30px;
 
       border:none;
       border-radius:18px;
 
-      cursor:pointer;
-
-      font-weight:600;
       font-size:1rem;
+      font-weight:600;
+
+      cursor:pointer;
 
       transition:0.35s ease;
 
@@ -322,7 +332,7 @@
 
     }
 
-    /* Hero Image */
+    /* Hero Visual */
 
     .hero-visual{
 
@@ -330,14 +340,12 @@
       justify-content:center;
       align-items:center;
 
-      position:relative;
-
     }
 
     .hero-window{
 
       width:100%;
-      max-width:480px;
+      max-width:500px;
 
       padding:25px;
 
@@ -351,9 +359,9 @@
 
       box-shadow:0 20px 50px rgba(0,0,0,0.3);
 
-      animation:floating 5s infinite ease-in-out;
-
       transform:rotate(-3deg);
+
+      animation:floating 5s infinite ease-in-out;
 
       transition:0.5s ease;
 
@@ -434,17 +442,15 @@
 
       background:var(--glass);
 
-      backdrop-filter:blur(24px);
-
       border:1px solid var(--border);
+
+      backdrop-filter:blur(24px);
 
       box-shadow:0 10px 35px var(--shadow);
 
       transition:0.45s ease;
 
       overflow:hidden;
-
-      position:relative;
 
     }
 
@@ -554,7 +560,6 @@
     footer{
 
       text-align:center;
-
       padding:40px;
 
       color:var(--sub);
@@ -602,7 +607,7 @@
 
       .section-title h2{
 
-        font-size:2.1rem;
+        font-size:2.2rem;
 
       }
 
@@ -630,7 +635,7 @@
 
     <div class="logo">
 
-      <img src="logo.png" alt="Markas Pharma Logo">
+      <img src="images/logo.png" alt="Logo">
 
       <h2>Markas Pharma</h2>
 
@@ -659,7 +664,7 @@
         <p>
 
           Markas Pharma delivers premium pharmaceutical and wellness
-          products with modern innovation, trusted healthcare solutions,
+          products with trusted innovation, modern healthcare,
           and quality manufacturing for a healthier tomorrow.
 
         </p>
@@ -678,7 +683,7 @@
 
         <div class="hero-window">
 
-          <img src="medicine1.jpg" alt="Medicine Product">
+          <img src="images/medicine1.jpg" alt="Medicine">
 
         </div>
 
@@ -696,7 +701,7 @@
 
       <h2>Our Products</h2>
 
-      <p>Premium healthcare and wellness range.</p>
+      <p>Premium healthcare and wellness products.</p>
 
     </div>
 
@@ -704,14 +709,14 @@
 
       <div class="product-card">
 
-        <img src="medicine1.jpg" alt="Medicine">
+        <img src="images/medicine1.jpg" alt="Medicine">
 
         <h3>MAK-DSR</h3>
 
         <p>
 
-          Pharmaceutical capsule packaging designed with modern
-          healthcare standards and trusted quality assurance.
+          Advanced pharmaceutical capsule designed
+          for quality healthcare support.
 
         </p>
 
@@ -719,14 +724,14 @@
 
       <div class="product-card">
 
-        <img src="medicine2.jpg" alt="Syrup">
+        <img src="images/medicine2.jpg" alt="Syrup">
 
         <h3>Markfit Syrup</h3>
 
         <p>
 
-          Lycopene with multivitamins and minerals syrup
-          supporting wellness and daily nutrition.
+          Lycopene with vitamins and minerals
+          for wellness and immunity support.
 
         </p>
 
@@ -734,14 +739,14 @@
 
       <div class="product-card">
 
-        <img src="medicine3.jpg" alt="Energy Drink Powder">
+        <img src="images/medicine3.jpg" alt="Energy Drink">
 
         <h3>Markfit-D</h3>
 
         <p>
 
-          Instant energy drink powder enriched with vitamins,
-          electrolytes and minerals for active lifestyles.
+          Instant energy drink powder with
+          vitamins and electrolytes.
 
         </p>
 
@@ -759,7 +764,7 @@
 
       <h2>Why Choose Us</h2>
 
-      <p>Modern pharma company with trusted quality.</p>
+      <p>Trusted healthcare with modern innovation.</p>
 
     </div>
 
@@ -773,8 +778,8 @@
 
         <p>
 
-          Carefully manufactured pharmaceutical products with
-          advanced healthcare standards.
+          Carefully manufactured healthcare
+          products with premium quality standards.
 
         </p>
 
@@ -788,8 +793,8 @@
 
         <p>
 
-          Futuristic healthcare solutions powered by innovation
-          and trusted expertise.
+          Combining technology and healthcare
+          for better wellness solutions.
 
         </p>
 
@@ -803,8 +808,8 @@
 
         <p>
 
-          Combining science and technology to create better
-          wellness products.
+          Science backed pharmaceutical
+          development and advanced formulation.
 
         </p>
 
@@ -818,8 +823,8 @@
 
         <p>
 
-          Delivering reliable products for healthier communities
-          and better lifestyles.
+          Reliable healthcare solutions
+          trusted by communities.
 
         </p>
 
@@ -829,13 +834,15 @@
 
   </section>
 
+  <!-- Footer -->
+
   <footer>
 
     © 2025 Markas Pharma — Premium Healthcare Experience
 
   </footer>
 
-  <!-- Script -->
+  <!-- Theme Script -->
 
   <script>
 
@@ -849,7 +856,9 @@
 
         toggle.innerHTML = "☀️";
 
-      } else {
+      }
+
+      else{
 
         toggle.innerHTML = "🌙";
 
