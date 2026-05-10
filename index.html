@@ -1,559 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Windows 11 Experience</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Inter',sans-serif;
-    }
-
-    :root{
-      --bg:#f3f7ff;
-      --card:rgba(255,255,255,0.25);
-      --text:#111827;
-      --sub:#5b6475;
-      --border:rgba(255,255,255,0.4);
-      --shadow:rgba(31,38,135,0.18);
-      --glow:#6ea8ff;
-    }
-
-    body.dark{
-      --bg:#060816;
-      --card:rgba(14,17,31,0.45);
-      --text:#ffffff;
-      --sub:#b6bdd0;
-      --border:rgba(255,255,255,0.08);
-      --shadow:rgba(0,0,0,0.5);
-      --glow:#5ea0ff;
-    }
-
-    body{
-      background:var(--bg);
-      color:var(--text);
-      min-height:100vh;
-      overflow-x:hidden;
-      transition:0.5s ease;
-      position:relative;
-    }
-
-    /* Animated Background */
-
-    .bg{
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      overflow:hidden;
-    }
-
-    .blob{
-      position:absolute;
-      width:500px;
-      height:500px;
-      border-radius:50%;
-      filter:blur(120px);
-      opacity:0.55;
-      animation:float 12s infinite ease-in-out alternate;
-    }
-
-    .blob1{
-      background:#4f8cff;
-      top:-100px;
-      left:-100px;
-    }
-
-    .blob2{
-      background:#8b5cf6;
-      bottom:-150px;
-      right:-100px;
-      animation-delay:2s;
-    }
-
-    .blob3{
-      background:#00d4ff;
-      top:40%;
-      left:50%;
-      transform:translate(-50%,-50%);
-      animation-delay:4s;
-    }
-
-    @keyframes float{
-      0%{
-        transform:translateY(0px) scale(1);
-      }
-      100%{
-        transform:translateY(-40px) scale(1.1);
-      }
-    }
-
-    /* Navbar */
-
-    nav{
-      width:100%;
-      padding:22px 8%;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      position:sticky;
-      top:0;
-      z-index:100;
-      backdrop-filter:blur(20px);
-      background:rgba(255,255,255,0.08);
-      border-bottom:1px solid rgba(255,255,255,0.12);
-    }
-
-    .logo{
-      font-size:1.4rem;
-      font-weight:700;
-      letter-spacing:1px;
-    }
-
-    .nav-right{
-      display:flex;
-      align-items:center;
-      gap:18px;
-    }
-
-    .theme-btn{
-      width:50px;
-      height:50px;
-      border:none;
-      border-radius:18px;
-      background:var(--card);
-      backdrop-filter:blur(18px);
-      cursor:pointer;
-      color:var(--text);
-      font-size:1.2rem;
-      transition:0.35s ease;
-      border:1px solid var(--border);
-      box-shadow:0 8px 32px var(--shadow);
-    }
-
-    .theme-btn:hover{
-      transform:translateY(-4px) scale(1.05);
-    }
-
-    /* Hero */
-
-    .hero{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:80px 8%;
-      position:relative;
-    }
-
-    .glass-card{
-      width:100%;
-      max-width:1200px;
-      padding:60px;
-      border-radius:40px;
-      background:var(--card);
-      backdrop-filter:blur(28px);
-      border:1px solid var(--border);
-      box-shadow:0 8px 40px var(--shadow);
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:60px;
-      animation:fadeUp 1s ease;
-    }
-
-    @keyframes fadeUp{
-      from{
-        opacity:0;
-        transform:translateY(40px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0px);
-      }
-    }
-
-    .hero-text h1{
-      font-size:4rem;
-      line-height:1.1;
-      margin-bottom:25px;
-      font-weight:700;
-    }
-
-    .gradient{
-      background:linear-gradient(90deg,#4f8cff,#8b5cf6,#00d4ff);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-
-    .hero-text p{
-      color:var(--sub);
-      font-size:1.1rem;
-      line-height:1.8;
-      margin-bottom:35px;
-    }
-
-    .buttons{
-      display:flex;
-      gap:20px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      padding:16px 28px;
-      border:none;
-      border-radius:18px;
-      cursor:pointer;
-      font-size:1rem;
-      transition:0.35s ease;
-      font-weight:600;
-    }
-
-    .primary{
-      background:linear-gradient(135deg,#4f8cff,#8b5cf6);
-      color:white;
-      box-shadow:0 10px 30px rgba(79,140,255,0.4);
-    }
-
-    .secondary{
-      background:var(--card);
-      color:var(--text);
-      border:1px solid var(--border);
-      backdrop-filter:blur(20px);
-    }
-
-    .btn:hover{
-      transform:translateY(-5px) scale(1.03);
-    }
-
-    /* Windows mockup */
-
-    .mockup{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      position:relative;
-    }
-
-    .window{
-      width:100%;
-      max-width:500px;
-      height:340px;
-      border-radius:28px;
-      background:rgba(255,255,255,0.12);
-      backdrop-filter:blur(30px);
-      border:1px solid rgba(255,255,255,0.2);
-      overflow:hidden;
-      box-shadow:0 20px 60px rgba(0,0,0,0.3);
-      transform:rotate(-4deg);
-      transition:0.5s ease;
-      animation:floatWindow 4s ease-in-out infinite;
-    }
-
-    .window:hover{
-      transform:rotate(0deg) scale(1.03);
-    }
-
-    @keyframes floatWindow{
-      0%{
-        transform:translateY(0px) rotate(-4deg);
-      }
-      50%{
-        transform:translateY(-12px) rotate(-2deg);
-      }
-      100%{
-        transform:translateY(0px) rotate(-4deg);
-      }
-    }
-
-    .window-top{
-      height:55px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:0 20px;
-      background:rgba(255,255,255,0.08);
-      border-bottom:1px solid rgba(255,255,255,0.08);
-    }
-
-    .dot{
-      width:12px;
-      height:12px;
-      border-radius:50%;
-    }
-
-    .red{background:#ff5f57;}
-    .yellow{background:#ffbd2e;}
-    .green{background:#28c840;}
-
-    .window-content{
-      padding:25px;
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:20px;
-    }
-
-    .mini-card{
-      height:100px;
-      border-radius:22px;
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.1);
-      backdrop-filter:blur(20px);
-      transition:0.35s ease;
-    }
-
-    .mini-card:hover{
-      transform:translateY(-8px);
-      box-shadow:0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    /* Features */
-
-    .features{
-      padding:100px 8%;
-    }
-
-    .section-title{
-      text-align:center;
-      margin-bottom:60px;
-    }
-
-    .section-title h2{
-      font-size:3rem;
-      margin-bottom:15px;
-    }
-
-    .section-title p{
-      color:var(--sub);
-    }
-
-    .feature-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:30px;
-    }
-
-    .feature-card{
-      padding:35px;
-      border-radius:30px;
-      background:var(--card);
-      backdrop-filter:blur(25px);
-      border:1px solid var(--border);
-      box-shadow:0 10px 30px var(--shadow);
-      transition:0.4s ease;
-    }
-
-    .feature-card:hover{
-      transform:translateY(-10px) scale(1.02);
-    }
-
-    .feature-card h3{
-      margin:18px 0 12px;
-      font-size:1.4rem;
-    }
-
-    .feature-card p{
-      color:var(--sub);
-      line-height:1.7;
-    }
-
-    .icon{
-      font-size:2rem;
-    }
-
-    /* Footer */
-
-    footer{
-      text-align:center;
-      padding:40px;
-      color:var(--sub);
-    }
-
-    /* Responsive */
-
-    @media(max-width:980px){
-
-      .glass-card{
-        grid-template-columns:1fr;
-        text-align:center;
-      }
-
-      .buttons{
-        justify-content:center;
-      }
-
-      .hero-text h1{
-        font-size:3rem;
-      }
-    }
-
-    @media(max-width:600px){
-
-      .glass-card{
-        padding:35px;
-      }
-
-      .hero-text h1{
-        font-size:2.4rem;
-      }
-
-      .section-title h2{
-        font-size:2.2rem;
-      }
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 11 Glass Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --blur: 20px;
+        }
+
+        .dark {
+            --glass-bg: rgba(20, 20, 20, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        /* High-Gloss Glassmorphism */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--blur)) saturate(180%);
+            -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* Smooth Motion Blur Animation */
+        .window-entry {
+            animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            filter: blur(10px);
+            opacity: 0;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(40px) scale(0.95); filter: blur(15px); opacity: 0; }
+            to { transform: translateY(0) scale(1); filter: blur(0px); opacity: 1; }
+        }
+
+        /* Glossy Reflection Effect */
+        .glossy::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .bg-blob {
+            filter: blur(80px);
+            z-index: -1;
+            transition: all 1s ease-in-out;
+        }
+    </style>
 </head>
+<body class="bg-slate-100 dark:bg-zinc-950 h-screen flex items-center justify-center p-6">
 
-<body>
-
-  <div class="bg">
-    <div class="blob blob1"></div>
-    <div class="blob blob2"></div>
-    <div class="blob blob3"></div>
-  </div>
-
-  <nav>
-    <div class="logo">Windows 11</div>
-
-    <div class="nav-right">
-      <button class="theme-btn" id="themeToggle">🌙</button>
-    </div>
-  </nav>
-
-  <section class="hero">
-
-    <div class="glass-card">
-
-      <div class="hero-text">
-        <h1>
-          Experience the
-          <span class="gradient">Future UI</span>
-        </h1>
-
-        <p>
-          A sleek Windows 11 inspired website with glossy glassmorphism,
-          motion blur, smooth transitions, dark mode, light mode and
-          ultra modern animations.
-        </p>
-
-        <div class="buttons">
-          <button class="btn primary">Explore</button>
-          <button class="btn secondary">Learn More</button>
-        </div>
-      </div>
-
-      <div class="mockup">
-
-        <div class="window">
-
-          <div class="window-top">
-            <div class="dot red"></div>
-            <div class="dot yellow"></div>
-            <div class="dot green"></div>
-          </div>
-
-          <div class="window-content">
-            <div class="mini-card"></div>
-            <div class="mini-card"></div>
-            <div class="mini-card"></div>
-            <div class="mini-card"></div>
-          </div>
-
-        </div>
-
-      </div>
-
+    <!-- Dynamic Animated Background -->
+    <div class="fixed inset-0 overflow-hidden">
+        <div id="blob1" class="bg-blob absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-400 opacity-30 rounded-full animate-pulse"></div>
+        <div id="blob2" class="bg-blob absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-purple-500 opacity-30 rounded-full"></div>
     </div>
 
-  </section>
+    <!-- Main Content Container -->
+    <main class="window-entry glass-panel glossy relative w-full max-w-4xl h-[600px] rounded-3xl p-8 flex flex-col overflow-hidden">
+        
+        <!-- Header / Nav -->
+        <header class="flex justify-between items-center mb-12">
+            <div class="flex items-center gap-3">
+                <svg class="w-8 h-8 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M0 0h11.387v11.387H0V0zm12.613 0H24v11.387H12.613V0zM0 12.613h11.387V24H0V12.613zm12.613 0H24V24H12.613V12.613z"/>
+                </svg>
+                <h1 class="text-xl font-semibold dark:text-white">Windows 11 <span class="font-light opacity-60">Flow</span></h1>
+            </div>
 
-  <section class="features">
+            <!-- Theme Toggle -->
+            <button onclick="toggleTheme()" class="glass-panel p-3 rounded-2xl hover:scale-110 active:scale-95 transition-all duration-300">
+                <span id="theme-icon" class="dark:text-white">🌙</span>
+            </button>
+        </header>
 
-    <div class="section-title">
-      <h2>Modern Features</h2>
-      <p>Clean, aesthetic and premium looking interface.</p>
-    </div>
+        <!-- Hero Section -->
+        <section class="flex-1 flex flex-col justify-center">
+            <h2 class="text-5xl font-bold mb-4 dark:text-white tracking-tight">
+                Design <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Simplified.</span>
+            </h2>
+            <p class="text-lg text-zinc-600 dark:text-zinc-400 max-w-md mb-8 leading-relaxed">
+                Experience the next generation of aesthetic computing. Clean lines, fluid motion, and professional clarity.
+            </p>
+            
+            <div class="flex gap-4">
+                <button class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-xl font-medium transition-all shadow-lg shadow-blue-500/20 active:scale-95">
+                    Explore
+                </button>
+                <button class="glass-panel dark:text-white px-8 py-3 rounded-xl font-medium hover:bg-white/10 transition-all">
+                    Docs
+                </button>
+            </div>
+        </section>
 
-    <div class="feature-grid">
+        <!-- Bottom Taskbar-style tray -->
+        <footer class="mt-auto flex justify-center">
+            <div class="glass-panel px-6 py-3 rounded-2xl flex gap-6 items-center">
+                <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                <div class="w-2 h-2 rounded-full bg-zinc-300 dark:bg-zinc-700"></div>
+                <div class="w-2 h-2 rounded-full bg-zinc-300 dark:bg-zinc-700"></div>
+            </div>
+        </footer>
+    </main>
 
-      <div class="feature-card">
-        <div class="icon">✨</div>
-        <h3>Glassy Design</h3>
-        <p>
-          Beautiful blur effects with glossy glassmorphism UI inspired
-          by Windows 11.
-        </p>
-      </div>
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.innerText = '☀️';
+            } else {
+                html.classList.add('dark');
+                icon.innerText = '🌙';
+            }
+        }
 
-      <div class="feature-card">
-        <div class="icon">🌙</div>
-        <h3>Dark & Light Mode</h3>
-        <p>
-          Smooth animated theme switching with minimal aesthetic colors.
-        </p>
-      </div>
+        // Randomize background blob movement for "Fluid" feel
+        document.addEventListener('mousemove', (e) => {
+            const b1 = document.getElementById('blob1');
+            const b2 = document.getElementById('blob2');
+            const x = e.clientX / 50;
+            const y = e.clientY / 50;
 
-      <div class="feature-card">
-        <div class="icon">⚡</div>
-        <h3>Motion Animations</h3>
-        <p>
-          Ultra smooth hover animations, floating cards and transitions.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="icon">💎</div>
-        <h3>Premium Feel</h3>
-        <p>
-          Modern rounded corners, glossy shadows and futuristic effects.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-  <footer>
-    Designed with ❤️ inspired by Windows 11 UI
-  </footer>
-
-  <script>
-
-    const toggle = document.getElementById("themeToggle");
-
-    toggle.addEventListener("click", () => {
-
-      document.body.classList.toggle("dark");
-
-      if(document.body.classList.contains("dark")){
-        toggle.innerHTML = "☀️";
-      } else {
-        toggle.innerHTML = "🌙";
-      }
-
-    });
-
-    // Smooth scroll animation
-
-    document.querySelectorAll("button").forEach(btn => {
-      btn.addEventListener("mousemove", e => {
-
-        const x = e.offsetX;
-        const y = e.offsetY;
-
-        btn.style.backgroundPosition = `${x}px ${y}px`;
-
-      });
-    });
-
-  </script>
-
+            b1.style.transform = `translate(${x}px, ${y}px)`;
+            b2.style.transform = `translate(${-x}px, ${-y}px)`;
+        });
+    </script>
 </body>
 </html>
