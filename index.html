@@ -8,8 +8,6 @@
 
   <title>Markas Pharma</title>
 
-  <!-- Google Font -->
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -58,8 +56,11 @@
 
       background:var(--bg);
       color:var(--text);
+
       overflow-x:hidden;
+
       transition:0.5s ease;
+
       min-height:100vh;
 
     }
@@ -67,40 +68,62 @@
     /* Background */
 
     .bg{
+
       position:fixed;
       inset:0;
+
       z-index:-1;
+
       overflow:hidden;
+
     }
 
     .blob{
+
       position:absolute;
+
       width:500px;
       height:500px;
+
       border-radius:50%;
+
       filter:blur(120px);
+
       opacity:0.45;
+
       animation:float 10s infinite alternate ease-in-out;
+
     }
 
     .blob1{
+
       background:#1794ff;
+
       top:-100px;
       left:-100px;
+
     }
 
     .blob2{
+
       background:#ff4d4d;
+
       bottom:-120px;
       right:-100px;
+
       animation-delay:2s;
+
     }
 
     .blob3{
+
       background:#6d5eff;
+
       top:40%;
       left:45%;
+
       animation-delay:4s;
+
     }
 
     @keyframes float{
@@ -120,6 +143,7 @@
     nav{
 
       width:100%;
+
       padding:20px 8%;
 
       display:flex;
@@ -128,6 +152,7 @@
 
       position:sticky;
       top:0;
+
       z-index:100;
 
       backdrop-filter:blur(20px);
@@ -142,6 +167,7 @@
 
       display:flex;
       align-items:center;
+
       gap:14px;
 
     }
@@ -152,6 +178,12 @@
       height:55px;
 
       border-radius:18px;
+
+      object-fit:cover;
+
+      background:white;
+
+      padding:5px;
 
     }
 
@@ -226,6 +258,7 @@
       box-shadow:0 10px 40px var(--shadow);
 
       display:grid;
+
       grid-template-columns:1fr 1fr;
 
       gap:60px;
@@ -251,6 +284,7 @@
     .hero-text h1{
 
       font-size:4.5rem;
+
       line-height:1.05;
 
       margin-bottom:24px;
@@ -264,6 +298,7 @@
       background:linear-gradient(90deg,#1794ff,#ff4d4d);
 
       -webkit-background-clip:text;
+
       -webkit-text-fill-color:transparent;
 
     }
@@ -284,6 +319,7 @@
 
       display:flex;
       gap:20px;
+
       flex-wrap:wrap;
 
     }
@@ -293,6 +329,7 @@
       padding:16px 30px;
 
       border:none;
+
       border-radius:18px;
 
       font-size:1rem;
@@ -392,6 +429,7 @@
     .hero-window img{
 
       width:100%;
+
       border-radius:24px;
 
     }
@@ -407,6 +445,7 @@
     .section-title{
 
       text-align:center;
+
       margin-bottom:60px;
 
     }
@@ -414,6 +453,7 @@
     .section-title h2{
 
       font-size:3rem;
+
       margin-bottom:14px;
 
     }
@@ -484,6 +524,7 @@
     .product-card h3{
 
       font-size:1.35rem;
+
       margin-bottom:12px;
 
     }
@@ -491,6 +532,7 @@
     .product-card p{
 
       color:var(--sub);
+
       line-height:1.7;
 
     }
@@ -540,6 +582,7 @@
     .feature-card .icon{
 
       font-size:2.2rem;
+
       margin-bottom:18px;
 
     }
@@ -553,6 +596,7 @@
     .feature-card p{
 
       color:var(--sub);
+
       line-height:1.7;
 
     }
@@ -560,6 +604,7 @@
     footer{
 
       text-align:center;
+
       padding:40px;
 
       color:var(--sub);
@@ -573,6 +618,7 @@
       .hero-card{
 
         grid-template-columns:1fr;
+
         text-align:center;
 
       }
@@ -635,7 +681,7 @@
 
     <div class="logo">
 
-      <img src="images/logo.png" alt="Logo">
+      <img src="https://images.assettype.com/fortune-india/import/company/logos/Marksans%20Pharma%20Ltd.png" alt="Logo">
 
       <h2>Markas Pharma</h2>
 
@@ -663,9 +709,10 @@
 
         <p>
 
-          Markas Pharma delivers premium pharmaceutical and wellness
-          products with trusted innovation, modern healthcare,
-          and quality manufacturing for a healthier tomorrow.
+          Markas Pharma delivers premium pharmaceutical
+          and wellness products with trusted innovation,
+          modern healthcare, and quality manufacturing
+          for a healthier tomorrow.
 
         </p>
 
@@ -683,7 +730,7 @@
 
         <div class="hero-window">
 
-          <img src="images/medicine1.jpg" alt="Medicine">
+          <img src="https://5.imimg.com/data5/WA_9696/Default/2025/8/539055611/RS/GJ/DV/77944832/image-500x500.jpeg" alt="Medicine">
 
         </div>
 
@@ -709,7 +756,7 @@
 
       <div class="product-card">
 
-        <img src="images/medicine1.jpg" alt="Medicine">
+        <img src="https://5.imimg.com/data5/WA_9696/Default/2025/8/539055611/RS/GJ/DV/77944832/image-500x500.jpeg" alt="Medicine">
 
         <h3>MAK-DSR</h3>
 
@@ -724,7 +771,7 @@
 
       <div class="product-card">
 
-        <img src="images/medicine2.jpg" alt="Syrup">
+        <img src="https://5.imimg.com/data5/WA_9696/Default/2025/8/539056517/HC/BA/ZZ/77944832/image-500x500.jpeg" alt="Syrup">
 
         <h3>Markfit Syrup</h3>
 
@@ -739,7 +786,7 @@
 
       <div class="product-card">
 
-        <img src="images/medicine3.jpg" alt="Energy Drink">
+        <img src="https://5.imimg.com/data5/WA_9696/Default/2025/8/539055608/VT/BB/RM/77944832/markfit-syp-multivitamin-amino-acid-syp-delicious-mix-fravour-500x500.jpeg" alt="Energy Drink">
 
         <h3>Markfit-D</h3>
 
