@@ -1,5 +1,5 @@
 <!-- =========================
-MARKAS PHARMA FULL WEBSITE
+MARKAS PHARMA PREMIUM WEBSITE
 ========================= -->
 
 <!DOCTYPE html>
@@ -74,6 +74,7 @@ min-height:100vh;
 
 a{
 text-decoration:none;
+color:inherit;
 }
 
 /* Background */
@@ -380,6 +381,12 @@ transform:translateY(-5px) scale(1.03);
 
 }
 
+.btn:active{
+
+transform:scale(0.96);
+
+}
+
 /* Hero Image */
 
 .hero-visual{
@@ -613,7 +620,7 @@ color:var(--sub);
 
 }
 
-/* Contact Form */
+/* Form */
 
 form{
 
@@ -627,23 +634,47 @@ gap:20px;
 input,
 textarea{
 
-padding:18px;
+padding:18px 22px;
 
 border:none;
 
-border-radius:18px;
+border-radius:22px;
 
 background:rgba(255,255,255,0.08);
 
-border:1px solid var(--border);
+border:1px solid rgba(255,255,255,0.12);
 
-backdrop-filter:blur(20px);
+backdrop-filter:blur(18px);
+
+-webkit-backdrop-filter:blur(18px);
 
 color:var(--text);
 
 font-size:1rem;
 
 outline:none;
+
+transition:0.35s ease;
+
+width:100%;
+
+}
+
+input::placeholder,
+textarea::placeholder{
+
+color:var(--sub);
+
+}
+
+input:focus,
+textarea:focus{
+
+transform:scale(1.01);
+
+border:1px solid #1794ff;
+
+box-shadow:0 0 20px rgba(23,148,255,0.25);
 
 }
 
@@ -1011,13 +1042,9 @@ and business partnerships.
 <h3>Phone Number</h3>
 
 <p>
-
 <a href="tel:9311531440">
-
 +91 9311531440
-
 </a>
-
 </p>
 
 </div>
@@ -1029,13 +1056,9 @@ and business partnerships.
 <h3>Email Address</h3>
 
 <p>
-
 <a href="mailto:shankurawat2506@gmail.com">
-
 shankurawat2506@gmail.com
-
 </a>
-
 </p>
 
 </div>
@@ -1047,13 +1070,9 @@ shankurawat2506@gmail.com
 <h3>WhatsApp Support</h3>
 
 <p>
-
 <a href="https://wa.me/919311531440">
-
 Chat With Our Team
-
 </a>
-
 </p>
 
 </div>
@@ -1119,7 +1138,7 @@ Send Inquiry
 </div>
 
 </section>
-  
+
 <!-- Disclaimer -->
 
 <section>
@@ -1162,7 +1181,7 @@ Delhi, India
 
 </footer>
 
-<!-- Theme Script -->
+<!-- Script -->
 
 <script>
 
@@ -1183,6 +1202,35 @@ else{
 toggle.innerHTML = "🌙";
 
 }
+
+});
+
+/* Scroll Reveal Animation */
+
+const cards = document.querySelectorAll('.card, .stat-card');
+
+const observer = new IntersectionObserver((entries)=>{
+
+entries.forEach((entry)=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity = "1";
+entry.target.style.transform = "translateY(0px)";
+
+}
+
+});
+
+},{threshold:0.1});
+
+cards.forEach((card)=>{
+
+card.style.opacity = "0";
+card.style.transform = "translateY(40px)";
+card.style.transition = "0.8s ease";
+
+observer.observe(card);
 
 });
 
